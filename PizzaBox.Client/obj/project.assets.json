@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "PizzaBox.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/PizzaBox.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PizzaBox.Domain.dll": {}
+        }
+      },
+      "PizzaBox.Storage/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "PizzaBox.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PizzaBox.Storage.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PizzaBox.Storage.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "PizzaBox.Domain/1.0.0": {
+      "type": "project",
+      "path": "../PizzaBox.Domain/PizzaBox.Domain.csproj",
+      "msbuildProject": "../PizzaBox.Domain/PizzaBox.Domain.csproj"
+    },
+    "PizzaBox.Storage/1.0.0": {
+      "type": "project",
+      "path": "../PizzaBox.Storage/PizzaBox.Storage.csproj",
+      "msbuildProject": "../PizzaBox.Storage/PizzaBox.Storage.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "PizzaBox.Domain >= 1.0.0",
+      "PizzaBox.Storage >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/bianca/.nuget/packages/": {}
@@ -30,7 +68,14 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/bianca/revature_projects/p1_project/PizzaBox.Domain/PizzaBox.Domain.csproj": {
+              "projectPath": "/home/bianca/revature_projects/p1_project/PizzaBox.Domain/PizzaBox.Domain.csproj"
+            },
+            "/home/bianca/revature_projects/p1_project/PizzaBox.Storage/PizzaBox.Storage.csproj": {
+              "projectPath": "/home/bianca/revature_projects/p1_project/PizzaBox.Storage/PizzaBox.Storage.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

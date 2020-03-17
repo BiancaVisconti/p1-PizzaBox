@@ -20526,6 +20526,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/bianca/revature_projects/p1_project/PizzaBox.Client/Views/Pizza/Create.cshtml",
+      "TargetPath": "Views\\Pizza\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/bianca/revature_projects/p1_project/PizzaBox.Client/Views/Home/Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
