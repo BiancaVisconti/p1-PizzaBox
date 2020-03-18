@@ -6,7 +6,7 @@
   <select asp-for="@Model.Crust">
     @foreach (var item in @Model.CrustList)
     {
-      <option value="item">item</option>
+      <option value="@item.Name">item</option>
     }
   </select>
 
