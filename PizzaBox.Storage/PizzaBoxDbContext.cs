@@ -10,15 +10,14 @@ namespace PizzaBox.Storage
     public DbSet<Size> Size { get; set; }
     public DbSet<Topping> Topping { get; set; }
 
+    public PizzaBoxDbContext(DbContextOptions options) : base(options) {}
 
-    protected override void OnConfiguring(DbContextOptionsBuilder builder)
-    {
-      builder.UseSqlServer("server=localhost;database=PizzaBoxDb;user id=sa;password=Password12345");
-    } 
+    protected override void OnModelCreating(ModelBuilder builder) {}
 
-    protected override void OnModelCreating(ModelBuilder builder)
-    {
-      
-    }
+
+    // protected override void OnConfiguring(DbContextOptionsBuilder builder)
+    // {
+    //   builder.UseSqlServer("server=localhost;database=PizzaBoxDb;user id=sa;password=Password12345");
+    // } 
   }
 }

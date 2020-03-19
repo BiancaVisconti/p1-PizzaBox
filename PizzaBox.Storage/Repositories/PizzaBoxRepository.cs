@@ -6,11 +6,21 @@ namespace PizzaBox.Storage.Repositories
 {
   public class PizzaBoxRepository
   {
-    private static readonly PizzaBoxDbContext _db = new PizzaBoxDbContext();
+    private PizzaBoxDbContext _db;
+    
+    public PizzaBoxRepository(PizzaBoxDbContext dbContext)
+    {
+      _db = dbContext;
+    }
     
     public IEnumerable<T> Read<T>() where T : class
     {
       return _db.Set<T>();
+    }
+
+    public object CheckAccount(string user, string pass)
+    {
+      return new object();
     }
   }
 }
