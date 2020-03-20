@@ -24,7 +24,7 @@ namespace PizzaBox.Client.Controllers
     {
       if (ModelState.IsValid)
       {
-        var acct = _pbr.CheckAccount(account.Username, account.Password);
+        var acct = _pbr.CheckAccount(account.Name, account.Password);
 
         if (acct != null)
         {

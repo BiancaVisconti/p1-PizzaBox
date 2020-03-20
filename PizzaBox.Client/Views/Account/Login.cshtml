@@ -3,9 +3,9 @@
 <form action="/account/login" method="post">
   @Html.AntiForgeryToken()
 
-  <label asp-for="@Model.Username">username</label>
-  <input type="text" asp-for="@Model.Username" />
-  @Html.ValidationMessageFor(avm => avm.Username)
+  <label asp-for="@Model.Name">username</label>
+  <input type="text" asp-for="@Model.Name" />
+  @Html.ValidationMessageFor(avm => avm.Name)
 
   <label asp-for="@Model.Password">password</label>
   <input type="password" asp-for="@Model.Password" />

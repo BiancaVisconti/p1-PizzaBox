@@ -10,7 +10,7 @@ services:
     ports:
       - 8000:80
     environment: 
-      - ConnectionStrings__main: "server=sql;database=PizzaBoxDb;user id=sa;password=Password12345"
+      - ConnectionStrings__main="server=sql;database=PizzaBoxDb;user id=sa;password=Password12345"
 
   sql:
     image: mcr.microsoft.com/mssql/server:2017-latest

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PizzaBox.Storage;
+using PizzaBox.Storage.Databases;
 using PizzaBox.Storage.Repositories;
 
 namespace PizzaBox.Client
