@@ -29,14 +29,16 @@ namespace PizzaBox.Client
             services.AddControllersWithViews();
             //I ADDED THIS
             services.AddDbContext<PizzaBoxDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("main")));
-            services.AddSingleton<PizzaBoxRepository>(); // lifetime of the application for all requests
+            services.AddScoped<PizzaBoxRepository>(); // lifetime of the application for all requests
             //services.AddScoped<IRepository, PizzaBoxRepository>(); // lifetime of 1 request for all method calls
             //services.AddTransient<IRepository, PizzaBoxRepository>(); // lifetime of 1 method call within 1 request
               }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PizzaBoxDbContext dbContext)
         {
+            dbContext.Database.Migrate();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
