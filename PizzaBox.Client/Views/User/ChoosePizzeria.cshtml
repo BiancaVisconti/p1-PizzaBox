@@ -1,0 +1,35 @@
+@model PizzaBox.Client.Models.StoreViewModel
+
+@{
+    ViewData["Title"] = "choose a pizzeria";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">please select a pizzeria</h1>
+</div>
+<div>
+  <h4 class="display-8">1) PizzaEater</h4>
+  <br>
+  <h4 class="display-8">2) DiegoPizza</h4>
+  <br>
+  <h4 class="display-8">3) MiPizza</h4>
+  <br>
+  <h4 class="display-8">4) TuPizza</h4>
+  <br>
+  <h4 class="display-8">5) Mangiata</h4>
+  <br>
+  <h4 class="display-8">6) PizzaLover</h4>
+  <br>
+</div>
+
+
+@using (Html.BeginForm("ChoosePizzeria", "User", FormMethod.Post))
+{
+  @Html.ValidationMessageFor(m => m.StoreId)
+  <label>Pizzeria's Number</label>
+  <input type="text" id="storeId" name="storeId">
+  @Html.ValidationMessageFor(mo => mo.StoreId, "", new { @class = "text-danger" })
+
+  <button type="submit">select</button>
+}

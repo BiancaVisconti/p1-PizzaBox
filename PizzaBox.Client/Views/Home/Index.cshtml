@@ -3,20 +3,43 @@
 }
 
 <h1>Welcome to Arlington's Fastest Delivery App</h1>
+<br>
+<br>
 
 <div>
-
-<a href="/user/login">login as client</a>
-
+  <form action="/user/loginuser" method="get">
+    @* @Html.HiddenFor(u => u.UserId, new { Value = "UserId" }) *@
+    <button type="submit">login as client</button>
+  </form>
+  <br>
+  <br>  
 </div>
 
+<div>
+  <form action="/store/loginstore" method="get">
+    @* @Html.HiddenFor(u => u.UserId, new { Value = "UserId" }) *@
+    <button type="submit">login as pizzeria</button>
+  </form>
+  <br>
+  <br>  
+</div>
+
+
+
+
+
+@* <div>
+
+<a href="/user/loginuser">login as client</a>
+
+</div>
 
 
 <div>
 
 <a href="/account/login">login</a>
 
-</div>
+</div> *@
 
 
 @* <div class="text-center">

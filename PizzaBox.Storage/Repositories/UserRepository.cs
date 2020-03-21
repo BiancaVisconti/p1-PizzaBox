@@ -61,11 +61,63 @@ namespace PizzaBox.Storing.Repositories
       return _db.User.SingleOrDefault(u => u.Name == name && u.Password == password);
     }
 
+    public User GetUser(long userId)
+    {
+      return _db.User.SingleOrDefault(u => u.UserId == userId);
+    }
+
     public string GetName(long userId)
     {
       string userName = (_db.User.SingleOrDefault(u => u.UserId == userId).Name);
       
       return userName;
+    }
+
+    public List<Order> GetOrders(long userId)
+    {
+      List<Order> list = (_db.Order.Where(o => o.UserId == userId).ToList());
+      return list;
+    }
+
+    public string GetNameStore(long storeId)
+    {
+      string storeName = (_db.Store.SingleOrDefault(s => s.StoreId == storeId).Name);
+      
+      return storeName;
+    }
+
+    public List<OrderPizza> Get(Order order)
+    {
+      List<OrderPizza> list = (_db.OrderPizza.Where(op => op.OrderId == order.OrderId).ToList());
+      
+      return list;
+    }
+
+    public string GetNamePizza(long pizzaId)
+    {
+      string pizzaName = (_db.Pizza.SingleOrDefault(p => p.PizzaId == pizzaId).Name);
+      
+      return pizzaName;
+    }
+
+    public List<Store> ShowPizzerias()
+    {
+      return _db.Store.ToList(); 
+    }
+
+    public Store GetStore(string name, string password)
+    {
+      return _db.Store.SingleOrDefault(u => u.Name == name && u.Password == password);
+    }
+
+    public Store GetStoreById(string numStore)
+    {
+      return _db.Store.SingleOrDefault(s => s.StoreId.ToString() == numStore);
+    }
+
+    public Store GetStore(string name)
+    {
+      return _db.Store.SingleOrDefault(u => u.Name == name);
     }
 
     public bool Post(User user)

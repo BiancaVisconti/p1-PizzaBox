@@ -13,13 +13,6 @@ namespace PizzaBox.Client.Controllers
     private static Store currentStore;
     private static Order currentOrder;
     
-    /*private PizzaBoxRepository _pbr;
-
-    public UserController(PizzaBoxRepository repository)
-    {
-      _pbr = repository;
-    }
-    */
 
     private UserRepository _ur;
 
@@ -30,69 +23,167 @@ namespace PizzaBox.Client.Controllers
     
     
     [HttpGet]
-    public IActionResult Login()
+    public IActionResult LoginUser()
     {
       return View();
     }
 
     [HttpPost]
-    public IActionResult Login(UserViewModel user)
+    public IActionResult LoginUser(UserViewModel user)
     {
+      
       if (ModelState.IsValid)
       {
         var acct = _ur.CheckIfAccountExists(user.Name, user.Password);
 
         if (acct)
         {
-          var u = _ur.GetUser(user.Name, user.Password);
+          currentUser = _ur.GetUser(user.Name, user.Password);
+
+          var u = new UserViewModel()
+          {
+            Name = currentUser.Name,
+            Password = currentUser.Password,
+            UserId = currentUser.UserId,
+            Address = currentUser.Address
+          };
           
-          return View("User", u);
+          return View("UserOptions", u);
         }
       }
       return View(user);
     }
     
+    [HttpPost]
+    public IActionResult MenuClient(UserViewModel user)
+    {
+      var u = _ur.GetUser(user.Name, user.Password);
+
+      ViewBag.Message = u;
+      
+      return View("UserOptions");
+    }
     
     [HttpGet]
     public IActionResult History()
     {
-      return View("PastOrdersOptions");
+      
+      //var u = _ur.GetUser(userId);
+
+      //var u = _ur.GetUser(user.Name, user.Password);
+
+      var u = new UserViewModel()
+      {
+        Name = currentUser.Name,
+        Password = currentUser.Password,
+        UserId = currentUser.UserId,
+        Address = currentUser.Address
+      };
+
+      //ViewBag.Message = u;
+      
+      return View("UserPastOrdersOptions", u);
     }
 
-    /*[HttpGet]
-    public IActionResult AllOrders()
+    [HttpPost]
+    public IActionResult ClientAllOrders(UserViewModel user)
     {
-      ViewBag.Message = "Client All Orders";
+       ViewBag.Message = "Your Order History";
 
-      List<Order> listOrders = _or.Get(currentUser);
+       ViewBag.Name = currentUser;
+      
+      long tempInt = user.UserId;
+      var list = _ur.GetOrders(tempInt);
+      
+      List<OrderViewModel> listOrders = new List<OrderViewModel>();
 
-      foreach (var row in listOrders)
+      int count = 0;
+
+      foreach (var order in list)
       {
-        listOrders.Add(new Order
+        string storeName = _ur.GetNameStore(order.StoreId);
+
+        List<OrderPizza> listOrderPizza = _ur.Get(order);
+
+        Dictionary<string, int> dict = new Dictionary<string, int>();
+
+        List<string> listDict = new List<string>();
+
+        foreach (var p in listOrderPizza)
         {
-            StoreId = row.StoreId,
-            Date = row.Date,
+          string pizzaName = _ur.GetNamePizza(p.PizzaId);
+          listDict.Add(pizzaName);
+          listDict.Add((p.Amount).ToString());
+        }
+
+        listOrders.Add(new OrderViewModel
+        {
+            StoreName = storeName,
+            Date = order.Date,
+            Count = ++count,
+            AmountPizzas = listDict
         });
           
       }
-
       return View(listOrders);
-
     }
-    */
 
     [HttpGet]
+    public IActionResult ChoosePizzeria()
+    {
+      /*List<StoreViewModel> list = new List<StoreViewModel>();
+      
+      List<Store> listPizzerias = _ur.ShowPizzerias();
+
+      foreach (var p in listPizzerias)
+      {
+        list.Add(new StoreViewModel
+        {
+            StoreId = p.StoreId,
+            Username = p.Name
+        });
+      }*/
+      
+      return View();
+    }
+
+    [HttpPost]
+    public IActionResult ChoosePizzeria(string storeId)
+    {
+      if (ModelState.IsValid)
+      {
+        var acct = _ur.GetStoreById(storeId);
+
+        if (acct != null)
+        {
+          currentStore = _ur.GetStoreById(storeId);
+
+          var s = new StoreViewModel()
+          {
+            Username = currentStore.Name,
+            Password = currentStore.Password,
+            StoreId = currentStore.StoreId,
+            Address = currentStore.Address
+          };
+          
+          return View("AddPizza", s);
+        }
+      }
+      return View();
+    }
+
+    [HttpPost]
     public IActionResult Days7Orders(UserViewModel user)
     {
       
       
-      return View("PastOrdersOptions");
+      return View("UserPastOrdersOptions");
     }
 
-    [HttpGet]
-    public IActionResult Days30Orders()
+    [HttpPost]
+    public IActionResult Days30Orders(UserViewModel user)
     {
-      return View("PastOrdersOptions");
+      return View("UserPastOrdersOptions");
     }
 
 

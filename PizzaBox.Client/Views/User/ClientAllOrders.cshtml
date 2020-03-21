@@ -1,76 +1,54 @@
-@model IEnumerable<PizzaBox.Domain.Models.Order>
-
-@* @{
-    ViewBag.Title = "AllOrders";
-} *@
+@model IEnumerable<PizzaBox.Client.Models.OrderViewModel>
 
 @{
-  if (TempData["UserViewModel"] != null)
-      {
-        var userViewModel = TempData["UserViewModel"] as UserViewModel;
-      }
+    ViewData["Title"] = "View History";
 }
 
+<h2>Here are all your past orders</h2>
 
-<h2>ViewEmployees</h2>
 
-@* <p>
-    @Html.ActionLink("Create New", "Create")
-</p> *@
-<table class="table">
+@foreach (var item in Model)
+{
+  <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.StoreId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th></th>
+      <th>
+        @Html.DisplayFor(modelitem => item.Count)
+      </th>
+      <th></th>
     </tr>
-
-@foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.StoreId)
+            @Html.DisplayFor(modelitem => item.StoreName)
         </td>
+    </tr>
+    <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
         </td>
-        @* <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td> *@
     </tr>
-}
-
-</table>
-
-
-
-
-@* @{
-  ViewData["Title"] = "User Order History";
-}
-
-<div class="text-center">
-  <h1 class="display-4">Your Past Orders</h1>
-  <table class="table table-bordered table-responsive table-hover">
-    <thead>
-      <tr>
-        <th>Pizzeria</th>
-        <th>Date</th>
-      </tr> 
-    </thead>
-    
-    @foreach (var o in ViewBag.User)
+    @for (int i = 0; i < item.AmountPizzas.Count; i+=2)
     {
-      <tbody>
-        <tr>
-          <td>@o.StoreId</td>
-          <td>@o.Date</td>
-        </tr>
-      </tbody>
+      <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountPizzas[i])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmountPizzas[i+1])
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>    
     }
   </table>
-</div> *@
+  <br>
+}
+
+<form action="/user/menuclient" method="post">
+  <button type="submit">back to menu</button>
+</form>

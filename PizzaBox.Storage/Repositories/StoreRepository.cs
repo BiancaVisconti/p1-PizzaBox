@@ -80,6 +80,12 @@ namespace PizzaBox.Storing.Repositories
       return storeName;
     }
 
+    public List<Order> GetOrders(long storeId)
+    {
+      List<Order> list = (_db.Order.Where(o => o.StoreId == storeId).ToList());
+      return list;
+    }
+
     public bool Post(Store store)
     {
       _db.Store.Add(store);

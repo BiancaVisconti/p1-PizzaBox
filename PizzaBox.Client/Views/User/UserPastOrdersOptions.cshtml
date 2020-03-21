@@ -1,0 +1,53 @@
+@model PizzaBox.Client.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Past Orders";
+    //var u = ViewBag.Message;
+}
+
+<h1>@Model.Name, orders from which period?</h1>
+<br>
+<br>
+
+<div>
+  <form action="/user/clientallorders" method="post">
+    @Html.HiddenFor(model => model.UserId)
+    <input type="submit" value="all orders">
+  </form>
+  <br>
+  <br>
+</div>
+
+<div>
+  <form action="/user/days7orders" method="post">
+    @Html.HiddenFor(u => u.UserId, new { Value = "UserId" })
+    <button type="submit">orders from the last 7 days</button>
+  </form>
+  <br>
+  <br>
+</div>
+
+<div>
+  <form action="/user/days30orders" method="post">
+    @Html.HiddenFor(u => u.UserId, new { Value = "UserId" })
+    <button type="submit">orders from the last 30 days</button>
+  </form>
+  <br>
+  <br> 
+</div>
+
+
+<div>
+  <form action="/user/menuclient" method="post">
+    <button type="submit">back to menu</button>
+  </form>
+</div>
+
+
+
+
+
+@* <h3>Id: @u.UserId</h3>  
+<h3>RecordName: @u.Name</h3>  
+<h3>RecordDetail: @u.Password</h3>
+<h3>RecordDetail: @u.Address</h3>  *@

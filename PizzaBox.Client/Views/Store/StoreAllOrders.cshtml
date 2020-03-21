@@ -1,0 +1,38 @@
+@model IEnumerable<PizzaBox.Client.Models.OrderViewModel>
+
+@{
+    ViewData["Title"] = "View History";
+    @* ViewBag.List = "listOrders"; *@
+}
+
+<h2>All Your Pizzeria's Past Orders</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelitem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+    </tr>
+}
+
+</table>
+<br>
+<br>
+
+<form action="/store/menupizzeria" method="post">
+  <button type="submit">back to menu</button>
+</form>

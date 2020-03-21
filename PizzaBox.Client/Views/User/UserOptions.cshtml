@@ -1,0 +1,40 @@
+@model PizzaBox.Client.Models.UserViewModel
+
+@* @{
+  var u = ViewBag.Message;
+} *@
+
+<h1>@Model.Name what would you like to do?</h1>
+<br>
+<br>
+
+<div>
+  <form action="/user/history" method="get">
+    @Html.HiddenFor(model => model.UserId)
+    <input type="submit" value="order history">
+    @* <button type="submit">order history</button> *@
+  </form>
+  <br>
+  <br>  
+</div>  
+
+<div>
+  <form action="/user/choosepizzeria" method="get">
+    @Html.HiddenFor(model => model.UserId)
+    <button type="submit">make an order</button>
+  </form>
+  <br>
+  <br>  
+</div>
+
+<div>
+  <form action="/account/logout" method="get">
+    @Html.HiddenFor(model => model.UserId)
+    <button type="submit">logout</button>
+  </form>
+</div>
+
+@* <h3>Id: @u.UserId</h3>  
+<h3>RecordName: @u.Name</h3>  
+<h3>RecordDetail: @u.Password</h3>
+<h3>RecordDetail: @u.Address</h3>   *@

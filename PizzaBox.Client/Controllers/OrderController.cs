@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaBox.Client.Models;
 using PizzaBox.Domain.Models;
@@ -32,31 +33,29 @@ namespace PizzaBox.Client.Controllers
       return View();
     }
 
-    [HttpGet]
-    public IActionResult ClientAllOrders(UserViewModel user)
+    /*[HttpGet]
+    public IActionResult ClientAllOrders(UserViewModel u)
     {
-      ViewBag.Message = "ClientAllOrders";
-      //TempData["UserViewModel"] = user;
-
-      var data = _or.Get(user.UserId);
+       ViewBag.Message = "Your Order History";
       
-      List<Order> listOrders = new List<Order>();
+      long tempInt = u.UserId;
+      var data = _or.Get(tempInt);
       
+      List<OrderViewModel> listOrders = new List<OrderViewModel>();
 
       foreach (var row in data)
       {
-        listOrders.Add(new Order
+        listOrders.Add(new OrderViewModel
         {
             StoreId = row.StoreId,
             Date = row.Date,
         });
           
       }
-      
+      return View(listOrders);
 
-      return View("ClientAllOrders");
-      //return View();
     }
+    */
 
   }
 }
