@@ -11,8 +11,6 @@ namespace PizzaBox.Storing.Repositories
   public class OrderRepository : IOrder // ARepository<Order>
   {
 
-    //private static readonly OrderRepository _or = new OrderRepository();
-
     private PizzaBoxDbContext _db;
     
     public OrderRepository(PizzaBoxDbContext dbContext)
@@ -35,6 +33,12 @@ namespace PizzaBox.Storing.Repositories
     public List<Order> Get(User user)
     {
       List<Order> list = (_db.Order.Where(o => o.UserId == user.UserId).ToList());
+      return list;
+    }
+
+    public List<Order> Get(long userId)
+    {
+      List<Order> list = (_db.Order.Where(o => o.UserId == userId).ToList());
       return list;
     }
 

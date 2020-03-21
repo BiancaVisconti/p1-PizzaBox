@@ -13,6 +13,22 @@ stages: build
           - script: dotnet build
             workingDirectory: $(working_dir)
 
+  - stage: analyze
+    jobs:
+      - job:
+        pool:            
+          vmImage: ubuntu-18.04 
+        steps:
+          - task: DotnetGlobalToolInstaller@0
+            inputs:
+              name: "dotnet-sonarscanner"
+          - script: |
+              dotnet sonarscanner begin /k:"BiancaVisconti_p1-BiancaVisconti" /o:"<biancavisconti>" /d:sonar.login="<token>" 
+              dotnet build
+              dotnet test
+              dotnet sonarscanner end /d:sonar.login="<token>" 
+            workingDirectory: $(working_dir)
+
   - stage: test
     jobs:
       - job: 

@@ -12,21 +12,8 @@ namespace PizzaBox.Storage.Databases
     public DbSet<Order> Order { get; set; }
     public DbSet<OrderPizza> OrderPizza { get; set; }
     public DbSet<StorePizza> StorePizza { get; set; }
-    
-    // public DbSet<Crust> Crust { get; set; }
-    // public DbSet<Size> Size { get; set; }
-    // public DbSet<Topping> Topping { get; set; }
 
-    /*protected override void OnConfiguring(DbContextOptionsBuilder builder)
-    {
-      builder.UseSqlServer("server=localhost;database=pizzaboxdb;user id=sa;password=Password12345;");
-    }
-    */
-
-    public PizzaBoxDbContext(DbContextOptions options) : base(options) 
-    {
-      //this.Database.Migrate();
-    }
+    public PizzaBoxDbContext(DbContextOptions options) : base(options) {}
 
     protected override void OnModelCreating(ModelBuilder builder) 
     {
