@@ -14,6 +14,8 @@ namespace PizzaBox.Client.Controllers
     private static Order currentOrder;
     private static Pizza currentPizza;
     private static List<Pizza> currentListOfPizzas = new List<Pizza>();
+
+    private static Dictionary<long, int> currentPizzaDict = new Dictionary<long, int>();
     
 
     private UserRepository _ur;
@@ -110,7 +112,16 @@ namespace PizzaBox.Client.Controllers
           bool check2 = _ur.HasItBeenMoreThan24Hours(currentUser, currentStore);
           if (check2)
           {
-            var listPizzas = _ur.GetAllPizzas();
+            List<StorePizza> listStorePizza = _ur.GetPizzasInStore(currentStore);
+            currentPizzaDict = new Dictionary<long, int>();
+            foreach (var p in listStorePizza)
+            {
+              currentPizzaDict.Add(p.PizzaId, p.Inventory);
+            }
+            
+            List<Pizza> listPizzas = _ur.ShowMenu(currentPizzaDict);
+            
+            //var listPizzas = _ur.GetAllPizzas();
 
             var s = new StoreViewModel()
             {
@@ -152,11 +163,14 @@ namespace PizzaBox.Client.Controllers
 
       if (ModelState.IsValid)
       {
-        var check = _ur.GetPizza(pizzaId);
+        bool check = _ur.CheckIfNumMenuPizzaIsValid(pizzaId, currentPizzaDict);
+        
+        //var check = _ur.GetPizza(pizzaId);
 
-        if (check != null)
+        if (check)
         {
           currentPizza = _ur.GetPizza(pizzaId);
+          currentPizzaDict[currentPizza.PizzaId]--;
           List<Pizza> lp = new List<Pizza>();
           lp = currentListOfPizzas;
           lp.Add(currentPizza);
@@ -181,7 +195,17 @@ namespace PizzaBox.Client.Controllers
           return View("PreViewOrder", o);
         }
       }
-      var listPizzas = _ur.GetAllPizzas();
+      /*List<StorePizza> listStorePizza = _ur.GetPizzasInStore(currentStore);
+      Dictionary<long, int> dict = new Dictionary<long, int>();
+      foreach (var p in listStorePizza)
+      {
+        dict.Add(p.PizzaId, p.Inventory);
+      }
+      */
+      
+      List<Pizza> listPizzas = _ur.ShowMenu(currentPizzaDict);
+      
+      //var listPizzas = _ur.GetAllPizzas();
 
       var s = new StoreViewModel()
       {
@@ -199,7 +223,17 @@ namespace PizzaBox.Client.Controllers
     [HttpGet]
     public IActionResult AddPizza()
     {
-      var listPizzas = _ur.GetAllPizzas();
+      /*List<StorePizza> listStorePizza = _ur.GetPizzasInStore(currentStore);
+      Dictionary<long, int> dict = new Dictionary<long, int>();
+      foreach (var p in listStorePizza)
+      {
+        dict.Add(p.PizzaId, p.Inventory);
+      }
+      */
+      
+      List<Pizza> listPizzas = _ur.ShowMenu(currentPizzaDict);
+      
+      //var listPizzas = _ur.GetAllPizzas();
 
       var s = new StoreViewModel()
       {
@@ -241,6 +275,9 @@ namespace PizzaBox.Client.Controllers
       foreach (var p in dict)
       {
         _ur.PostOrderPizza(ord, p.Key, p.Value);
+        int old_inventory = _ur.GetInventory(currentStore, p.Key);
+        int new_inventory = old_inventory - p.Value;
+        _ur.UpdateInventory(currentStore, p.Key, new_inventory); 
       }
       
       return View("CheckOut", o);

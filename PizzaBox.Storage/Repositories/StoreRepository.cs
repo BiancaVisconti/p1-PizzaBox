@@ -121,6 +121,18 @@ namespace PizzaBox.Storing.Repositories
       return pizzaName;
     }
 
+    public Pizza GetPizza(long pizzaId)
+    {
+      Pizza pizza = _db.Pizza.SingleOrDefault(p => p.PizzaId == pizzaId);
+      
+      return pizza;
+    }
+
+    public List<StorePizza> GetPerStore(Store store) 
+    {
+			return _db.StorePizza.Where(sp => sp.StoreId == store.StoreId).ToList();
+    }
+
     public List<Order> GetOrders(long storeId)
     {
       List<Order> list = (_db.Order.Where(o => o.StoreId == storeId).ToList());

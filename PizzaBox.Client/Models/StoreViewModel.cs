@@ -40,5 +40,13 @@ namespace PizzaBox.Client.Models
     [Required(ErrorMessage ="please enter a pizzeria number")]
     public Store SelectedStore { get; set; }
 
+    public List<string> Inventory { get; set; }
+
+    public List<string> RevenueAmountPerPizza { get; set; }
+
+    public int TotalAmount { get; set; }
+
+    public decimal TotalRevenue { get; set; }
+
   }
 }

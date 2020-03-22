@@ -98,16 +98,18 @@ namespace PizzaBox.Storing.Repositories
       }          
     } 
 
-    public void ShowMenu(Dictionary<long, int> dict)
+    public List<Pizza> ShowMenu(Dictionary<long, int> dict)
     { 
+      List<Pizza> list = new List<Pizza>();
       foreach (var p in dict)
       {
         if (p.Value > 0)
         {
           Pizza pizza = GetPizza(p.Key);
-          Console.WriteLine(pizza);
+          list.Add(pizza);
         }
       }
+      return list;
     } 
     
   }

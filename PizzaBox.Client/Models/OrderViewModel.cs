@@ -42,12 +42,6 @@ namespace PizzaBox.Client.Models
 
     public List<Order> Orders { get; set; }
 
-    public List<string> RevenueAmountPerPizza { get; set; }
-
-    public int TotalAmount { get; set; }
-
-    public decimal TotalRevenue { get; set; }
-
     
   }
 }

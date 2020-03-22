@@ -207,10 +207,25 @@ namespace PizzaBox.Client.Controllers
     }
 
     [HttpGet]
-    public IActionResult PizzeriaInventory(StoreViewModel store)
+    public IActionResult PizzeriaInventory()
     {
+      List<string> listInventory = new List<string>();
       
-      return View("StoreOptions");
+      foreach (var sp in _sr.GetPerStore(currentStore))
+      {
+        Pizza pizza = _sr.GetPizza(sp.PizzaId);
+        listInventory.Add(sp.Inventory.ToString());
+        listInventory.Add(pizza.Name);
+      }
+
+      var s = new StoreViewModel()
+      {
+        Inventory = listInventory,
+        Username = currentStore.Name
+      };
+      
+      
+      return View("Inventory", s);
     }
 
     [HttpGet]
@@ -234,15 +249,15 @@ namespace PizzaBox.Client.Controllers
         listPizzaAmountRevenue.Add(revenue.ToString());
       }
 
-      var o = new OrderViewModel()
+      var s = new StoreViewModel()
       {
         RevenueAmountPerPizza = listPizzaAmountRevenue,
         TotalAmount = totalAmount,
         TotalRevenue = totalRevenue,
-        StoreName = currentStore.Name
+        Username = currentStore.Name
       };
     
-      return View("SalesAndRevenue", o);
+      return View("SalesAndRevenue", s);
     }
   }
 }

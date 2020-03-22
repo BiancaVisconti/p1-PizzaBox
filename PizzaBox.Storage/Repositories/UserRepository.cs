@@ -125,6 +125,14 @@ namespace PizzaBox.Storing.Repositories
 			return _db.Pizza.ToList();
     }
 
+    public List<StorePizza> GetPizzasInStore(Store store)
+    {
+      List<StorePizza> list = (_db.StorePizza.Where(sp => sp.StoreId == store.StoreId && sp.Inventory > 0).ToList());
+      
+      return list;
+    }
+
+
     public Pizza GetPizza(string pizzaId)
     {
       Pizza pizza = _db.Pizza.SingleOrDefault(p => p.PizzaId.ToString() == pizzaId);
@@ -180,6 +188,49 @@ namespace PizzaBox.Storing.Repositories
       return _db.SaveChanges() == 1;
     }
 
+    public bool UpdateInventory(Store store, Pizza pizza, int new_inventory)
+    {
+      var sp = Get(store, pizza);
+      sp.Inventory = new_inventory;
+      
+      _db.StorePizza.Update(sp);
+      return _db.SaveChanges() == 1;
+    }
+
+    public Pizza GetPizzaByNumMenu(int id)
+    {
+      return _db.Pizza.SingleOrDefault(p => p.PizzaId == id);
+    }
+    
+    public bool CheckIfNumMenuPizzaIsValid(string nuMenu, Dictionary<long, int> dict)
+    {
+      int result;
+      if (int.TryParse(nuMenu, out result))
+      {
+        Pizza pizza = GetPizzaByNumMenu(Int32.Parse(nuMenu));
+        if (pizza != null)
+        {
+          foreach (var d in dict)
+          {
+            if(d.Key == pizza.PizzaId && d.Value > 0)
+            {
+              return true;
+            }   
+          }
+          return false;
+        }
+        else
+        {
+          return false;
+        }
+        
+      }
+      else
+      {
+        return false;
+      }          
+    } 
+
     public bool PostOrderPizza(Order order, Pizza pizza, int amount)
     {
       var op = new OrderPizza();
@@ -190,6 +241,13 @@ namespace PizzaBox.Storing.Repositories
 
       _db.OrderPizza.Add(op);
       return _db.SaveChanges() == 1;
+    }
+
+    public StorePizza Get(Store store, Pizza pizza)
+    {
+      StorePizza storePizza = (_db.StorePizza.SingleOrDefault(sp => sp.PizzaId == pizza.PizzaId && sp.StoreId == store.StoreId));
+      
+      return storePizza;
     }
 
     public Dictionary<Pizza, int> PizzaAmount(List<Pizza> list)
@@ -264,6 +322,34 @@ namespace PizzaBox.Storing.Repositories
       }
       return count;
     }
+
+   public Pizza GetPizza(long pizzaId)
+    {
+      Pizza pizza = _db.Pizza.SingleOrDefault(p => p.PizzaId == pizzaId);
+      
+      return pizza;
+    }
+   
+   public List<Pizza> ShowMenu(Dictionary<long, int> dict)
+    { 
+      List<Pizza> list = new List<Pizza>();
+      foreach (var p in dict)
+      {
+        if (p.Value > 0)
+        {
+          Pizza pizza = GetPizza(p.Key);
+          list.Add(pizza);
+        }
+      }
+      return list;
+    }
+
+    public int GetInventory(Store store, Pizza pizza)
+    {
+      int inventory = (_db.StorePizza.SingleOrDefault(sp => sp.PizzaId == pizza.PizzaId && sp.StoreId == store.StoreId).Inventory);
+      
+      return inventory;
+    } 
 
   }
 }
