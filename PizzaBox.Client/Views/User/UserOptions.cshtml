@@ -1,17 +1,17 @@
 @model PizzaBox.Client.Models.UserViewModel
 
-@* @{
+@{
   var u = ViewBag.Message;
-} *@
+}
 
-<h1>@Model.Name what would you like to do?</h1>
+<h1>what would you like to do?</h1>
 <br>
 <br>
 
 <div>
   <form action="/user/history" method="get">
     @Html.HiddenFor(model => model.UserId)
-    <input type="submit" value="order history">
+    <input type="submit" value="order history" class="btn btn-default">
     @* <button type="submit">order history</button> *@
   </form>
   <br>
@@ -21,7 +21,7 @@
 <div>
   <form action="/user/choosepizzeria" method="get">
     @Html.HiddenFor(model => model.UserId)
-    <button type="submit">make an order</button>
+    <input type="submit" value="make an order" class="btn btn-default">
   </form>
   <br>
   <br>  
@@ -30,7 +30,7 @@
 <div>
   <form action="/account/logout" method="get">
     @Html.HiddenFor(model => model.UserId)
-    <button type="submit">logout</button>
+    <input type="submit" value="logout" class="btn btn-default">
   </form>
 </div>
 

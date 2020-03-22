@@ -4,10 +4,9 @@
     ViewData["Title"] = "View History";
 }
 
-<h2>Here are all your past orders</h2>
+<h2>Here are all your orders from the past 7 days</h2>
 <br>
-
-<form action="/store/menupizzeria" method="post">
+<form action="/user/menuclient" method="post">
   <button type="submit">back to menu</button>
 </form>
 <br>
@@ -23,7 +22,7 @@
     </tr>
     <tr>
         <td>
-            @Html.DisplayFor(modelitem => item.ClientName)
+            @Html.DisplayFor(modelitem => item.StoreName)
         </td>
     </tr>
     <tr>

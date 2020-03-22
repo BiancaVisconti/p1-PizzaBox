@@ -1,0 +1,41 @@
+@model PizzaBox.Client.Models.OrderViewModel
+
+<h1>@Model.Client.Name, this is your order so far</h1>
+<br>
+<br>
+<h3>total: $@Model.TotalPrice</h3>
+
+<div>
+  <table class="table">
+    @foreach (var item in Model.ListOfPizzas)
+    {
+      <tr>
+        <td>
+            <h5>$@Html.DisplayFor(modelitem => item.Price)</h5>
+        </td>
+        <td>
+            <h5>@Html.DisplayFor(modelitem => item.Name)</h5>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <br>
+    }
+  </table>
+</div>
+
+<form action="/user/addpizza" method="get">
+  <input type="submit" value="add another pizza" class="btn btn-default" />
+</form>
+<br>
+
+<form action="/user/checkout" method="get">
+  <input type="submit" value="done with my order" class="btn btn-default" />
+</form>
+<br>
+
+<form action="/user/menuclient" method="post">
+  <input type="submit" value="back to menu" class="btn btn-default" />
+</form>

@@ -1,0 +1,13 @@
+@model PizzaBox.Client.Models.StoreViewModel
+
+@{
+    ViewData["Title"] = "choose a pizzeria";
+}
+
+<h1>We are sorry @Model.ClientName, but you can't make another order within the first 2 hours</h1>
+
+<br>
+<form action="/user/menuclient" method="post">
+  <button type="submit">back to menu</button>
+</form>
+<br>

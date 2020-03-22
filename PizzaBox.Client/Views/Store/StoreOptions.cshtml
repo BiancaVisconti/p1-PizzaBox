@@ -18,6 +18,15 @@
 </div>
 
 <div>
+  <form action="/store/salesandrevenue" method="get">
+    @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
+    <button type="submit">view sales and revenue</button>
+  </form>
+  <br>
+  <br>  
+</div>
+
+<div>
   <form action="/store/pizzeriainventory" method="get">
     @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
     <button type="submit">view inventory</button>

@@ -26,5 +26,19 @@ namespace PizzaBox.Client.Models
 
     public List<StorePizza> StorePizzas { get; set; }
 
+    public List<Pizza> Pizzas { get; set; }
+
+    [Required(ErrorMessage ="please enter a pizza number")]
+    public Pizza SelectedPizza { get; set; }
+
+    public List<Pizza> PizzasInOrder { get; set; }
+
+    public string ClientName { get; set; }
+
+    public List<Store> AllStores { get; set; }
+
+    [Required(ErrorMessage ="please enter a pizzeria number")]
+    public Store SelectedStore { get; set; }
+
   }
 }

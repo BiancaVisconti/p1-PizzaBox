@@ -5,7 +5,11 @@
 }
 
 <h2>Here are all your past orders</h2>
-
+<br>
+<form action="/user/menuclient" method="post">
+  <button type="submit">back to menu</button>
+</form>
+<br>
 
 @foreach (var item in Model)
 {
@@ -45,10 +49,11 @@
         <td></td>
       </tr>    
     }
+    <tr>
+        <td>
+            <h4>total: $@Html.DisplayFor(modelItem => item.TotalPrice)</h4>
+        </td>
+    </tr>
   </table>
   <br>
 }
-
-<form action="/user/menuclient" method="post">
-  <button type="submit">back to menu</button>
-</form>

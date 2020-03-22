@@ -4,8 +4,38 @@
     ViewData["Title"] = "choose a pizzeria";
 }
 
+@using (Html.BeginForm("ChoosePizzeria", "User", FormMethod.Post))
+{
+  @Html.ValidationMessageFor(m => m.SelectedStore.StoreId)
+  <label>@Model.ClientName, enter the pizzeria's number</label>
+  <input type="text" id="storeId" name="storeId">
+  @Html.ValidationMessageFor(mo => mo.SelectedStore.StoreId, "", new { @class = "text-danger" })
 
-<div class="text-center">
+  <button type="submit">select</button>
+}
+
+<div>
+  <table class="table">
+    @foreach (var item in Model.AllStores)
+    {
+      <tr>
+        <td>
+            <h5>@Html.DisplayFor(modelitem => item.StoreId))</h5>
+        </td>
+        <td>
+            <h5>@Html.DisplayFor(modelitem => item.Name)</h5>
+        </td>
+        <td>
+            <h5>@Html.DisplayFor(modelitem => item.Address)</h5>
+        </td>
+      </tr>
+      <br>
+    }
+  </table>
+</div>
+
+
+@* <div class="text-center">
     <h1 class="display-4">please select a pizzeria</h1>
 </div>
 <div>
@@ -21,15 +51,4 @@
   <br>
   <h4 class="display-8">6) PizzaLover</h4>
   <br>
-</div>
-
-
-@using (Html.BeginForm("ChoosePizzeria", "User", FormMethod.Post))
-{
-  @Html.ValidationMessageFor(m => m.StoreId)
-  <label>Pizzeria's Number</label>
-  <input type="text" id="storeId" name="storeId">
-  @Html.ValidationMessageFor(mo => mo.StoreId, "", new { @class = "text-danger" })
-
-  <button type="submit">select</button>
-}
+</div> *@

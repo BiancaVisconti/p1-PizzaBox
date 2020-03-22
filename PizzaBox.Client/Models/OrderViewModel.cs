@@ -19,7 +19,7 @@ namespace PizzaBox.Client.Models
 
     public long UserId { get; set; }
 
-    public string UserName { get; set; }
+    public string ClientName { get; set; }
 
     [Display(Name = "date")]
     public DateTime Date { get; set; }
@@ -31,6 +31,22 @@ namespace PizzaBox.Client.Models
     public List<OrderPizza> OrderPizzas { get; set; }
 
     public List<string> AmountPizzas { get; set; }
+
+    public Store StoreSelected { get; set; }
+
+    public List<Pizza> ListOfPizzas { get; set; }
+
+    public User Client { get; set; }
+
+    public decimal TotalPrice { get; set; }
+
+    public List<Order> Orders { get; set; }
+
+    public List<string> RevenueAmountPerPizza { get; set; }
+
+    public int TotalAmount { get; set; }
+
+    public decimal TotalRevenue { get; set; }
 
     
   }

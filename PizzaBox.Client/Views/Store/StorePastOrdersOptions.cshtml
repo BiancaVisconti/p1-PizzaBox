@@ -19,7 +19,7 @@
 </div>
 
 <div>
-  <form action="/store/days7orders" method="post">
+  <form action="/store/sdays7orders" method="post">
     @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
     <button type="submit">orders from the last 7 days</button>
   </form>
@@ -28,7 +28,7 @@
 </div>
 
 <div>
-  <form action="/store/days30orders" method="post">
+  <form action="/store/sdays30orders" method="post">
     @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
     <button type="submit">orders from the last 30 days</button>
   </form>

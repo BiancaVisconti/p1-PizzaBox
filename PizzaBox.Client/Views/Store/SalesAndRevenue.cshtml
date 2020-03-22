@@ -1,0 +1,48 @@
+@model PizzaBox.Client.Models.OrderViewModel
+
+@{
+    ViewData["Title"] = "View History";
+}
+
+<h2>total sales and revenue</h2>
+<br>
+
+<form action="/store/menupizzeria" method="post">
+  <button type="submit">back to menu</button>
+</form>
+<br>
+
+<table class="table">
+<tr>
+      <td>
+          <h4>total amount of pizzas sold: @Html.DisplayFor(modelitem => Model.TotalAmount)</h4>
+      </td>
+  </tr>
+  <tr>
+      <td>
+          <h4>total revenue: $@Html.DisplayFor(modelItem => Model.TotalRevenue)</h4>
+      </td>
+  </tr>
+  @for (int i = 0; i < Model.RevenueAmountPerPizza.Count; i+=3)
+  {
+    <tr>
+      <td>
+          <h4>@Html.DisplayFor(modelItem => Model.RevenueAmountPerPizza[i])</h4>
+      </td>
+      <td>
+          <h4>@Html.DisplayFor(modelItem => Model.RevenueAmountPerPizza[i+1])</h4>
+      </td>
+      <td>
+          <h4>$@Html.DisplayFor(modelItem => Model.RevenueAmountPerPizza[i+2])</h4>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  }        
+</table>

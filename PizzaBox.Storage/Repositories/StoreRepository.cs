@@ -79,6 +79,47 @@ namespace PizzaBox.Storing.Repositories
       
       return storeName;
     }
+    public string GetNameClient(long userId)
+    {
+      string clientName = (_db.User.SingleOrDefault(s => s.UserId == userId).Name);
+      
+      return clientName;
+    }
+
+    public List<OrderPizza> Get(Order order)
+    {
+      List<OrderPizza> list = (_db.OrderPizza.Where(op => op.OrderId == order.OrderId).ToList());
+      
+      return list;
+    }
+
+    public List<Order> Get(Store store)
+    {
+      List<Order> list = (_db.Order.Where(o => o.StoreId == store.StoreId).ToList());
+      
+      return list;
+    }
+
+    public List<Order> GetPeriodStore(long storeId, double days)
+    {
+      List<Order> list = (_db.Order.Where(o => o.StoreId == storeId && o.Date.AddHours(days*24) >= DateTime.Now).ToList());
+      
+      return list;
+    }
+
+    public decimal GetPricePizza(long pizzaId)
+    {
+      decimal pizzaPrice = (_db.Pizza.SingleOrDefault(p => p.PizzaId == pizzaId).Price);
+      
+      return pizzaPrice;
+    }
+
+    public string GetNamePizza(long pizzaId)
+    {
+      string pizzaName = (_db.Pizza.SingleOrDefault(p => p.PizzaId == pizzaId).Name);
+      
+      return pizzaName;
+    }
 
     public List<Order> GetOrders(long storeId)
     {
@@ -119,6 +160,28 @@ namespace PizzaBox.Storing.Repositories
       {
         Console.WriteLine(s);
       }
+    }
+
+    public Dictionary<long, int> CalculateSalesAndRevenue(List<Order> listOrders)
+    {
+      Dictionary<long, int> RepeatedPizzaSales = new Dictionary<long, int>();
+
+      foreach (var o in listOrders)
+      {
+        List<OrderPizza> listOrderPizza = Get(o);
+        for (int i = 0; i < listOrderPizza.Count(); i++)
+        {
+          if (RepeatedPizzaSales.ContainsKey(listOrderPizza[i].PizzaId))
+          {
+            RepeatedPizzaSales[listOrderPizza[i].PizzaId] += listOrderPizza[i].Amount;
+          }
+          else
+          {
+            RepeatedPizzaSales.Add(listOrderPizza[i].PizzaId, listOrderPizza[i].Amount);
+          }
+        }  
+      }
+      return RepeatedPizzaSales;
     }
  
   }

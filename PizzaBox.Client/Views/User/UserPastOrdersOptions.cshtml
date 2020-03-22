@@ -39,6 +39,7 @@
 
 <div>
   <form action="/user/menuclient" method="post">
+    @Html.HiddenFor(u => u.Name, new { Value = "Name" })
     <button type="submit">back to menu</button>
   </form>
 </div>
