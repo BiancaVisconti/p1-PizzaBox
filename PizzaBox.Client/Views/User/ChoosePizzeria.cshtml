@@ -4,35 +4,59 @@
     ViewData["Title"] = "choose a pizzeria";
 }
 
-@using (Html.BeginForm("ChoosePizzeria", "User", FormMethod.Post))
-{
-  @Html.ValidationMessageFor(m => m.SelectedStore.StoreId)
-  <label>@Model.ClientName, enter the pizzeria's number</label>
-  <input type="text" id="storeId" name="storeId">
-  @Html.ValidationMessageFor(mo => mo.SelectedStore.StoreId, "", new { @class = "text-danger" })
+<h1>@Model.ClientName, choose a pizzeria</h1>
+<br>
 
-  <button type="submit">select</button>
-}
+<form action="/user/menuclient" method="post">
+  <h6><input type="submit" value="Back to menu"></h6>
+</form>
+<br>
 
 <div>
-  <table class="table">
-    @foreach (var item in Model.AllStores)
-    {
-      <tr>
-        <td>
-            <h5>@Html.DisplayFor(modelitem => item.StoreId))</h5>
-        </td>
-        <td>
-            <h5>@Html.DisplayFor(modelitem => item.Name)</h5>
-        </td>
-        <td>
-            <h5>@Html.DisplayFor(modelitem => item.Address)</h5>
-        </td>
-      </tr>
-      <br>
-    }
-  </table>
+  @using (Html.BeginForm("ChoosePizzeria", "User", FormMethod.Post))
+  {
+    @Html.ValidationMessageFor(m => m.SelectedStore.StoreId)
+    <label>Enter the pizzeria's number</label>
+    <input type="text" id="storeId" name="storeId">
+    @Html.ValidationMessageFor(mo => mo.SelectedStore.StoreId, "", new { @class = "text-danger" })
+    <button type="submit">select</button>
+  
+    <table class="table" style="margin-top:-70px;">
+      <th>
+        <tr>
+          <td>
+            <h3>Number</h3>
+          </td>
+          <td>
+            <h3>Name</h3>
+          </td>
+          <td>
+            <h3>Address</h3>
+          </td>
+        </tr>
+      </th>
+      @foreach (var item in Model.AllStores)
+      {
+        <tr>
+          <td>
+              <h5>@Html.DisplayFor(modelitem => item.StoreId))</h5>
+          </td>
+          <td>
+              <h5>@Html.DisplayFor(modelitem => item.Name)</h5>
+          </td>
+          <td>
+              <h5>@Html.DisplayFor(modelitem => item.Address)</h5>
+          </td>
+        </tr>
+        <br>
+      }
+    </table>
+  
+  }
+  
 </div>
+
+
 
 
 @* <div class="text-center">

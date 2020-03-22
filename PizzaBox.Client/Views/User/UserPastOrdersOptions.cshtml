@@ -5,50 +5,73 @@
     //var u = ViewBag.Message;
 }
 
-<h1>@Model.Name, orders from which period?</h1>
+<h1 style="text-align:center">@Model.Name, orders from which period?</h1>
 <br>
 <br>
 
-<div>
-  <form action="/user/clientallorders" method="post">
-    @Html.HiddenFor(model => model.UserId)
-    <input type="submit" value="all orders">
-  </form>
-  <br>
-  <br>
-</div>
+<table style="margin-left:auto;margin-right:auto;">
+  <tr>
+    <td>
+     <form action="/user/clientallorders" method="post">
+      @Html.HiddenFor(model => model.UserId)
+      <h3><input type="submit" value="All orders"></h3>
+    </form> 
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <form action="/user/days7orders" method="post">
+        @Html.HiddenFor(u => u.UserId, new { Value = "UserId" })
+        <h3><input type="submit" value="Last 7 days"></h3>
+      </form>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <form action="/user/days30orders" method="post">
+        @Html.HiddenFor(u => u.UserId, new { Value = "UserId" })
+        <h3><input type="submit" value="Last 30 days"></h3>
+      </form>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <form action="/user/menuclient" method="post">
+        @Html.HiddenFor(u => u.Name, new { Value = "Name" })
+        <h3><input type="submit" value="Back to menu"></h3>
+      </form>
+    </td>
+  </tr>
+</table>
 
-<div>
-  <form action="/user/days7orders" method="post">
-    @Html.HiddenFor(u => u.UserId, new { Value = "UserId" })
-    <button type="submit">orders from the last 7 days</button>
-  </form>
-  <br>
-  <br>
-</div>
 
-<div>
-  <form action="/user/days30orders" method="post">
-    @Html.HiddenFor(u => u.UserId, new { Value = "UserId" })
-    <button type="submit">orders from the last 30 days</button>
-  </form>
-  <br>
-  <br> 
-</div>
-
-
-<div>
-  <form action="/user/menuclient" method="post">
-    @Html.HiddenFor(u => u.Name, new { Value = "Name" })
-    <button type="submit">back to menu</button>
-  </form>
-</div>
-
-
-
-
-
-@* <h3>Id: @u.UserId</h3>  
-<h3>RecordName: @u.Name</h3>  
-<h3>RecordDetail: @u.Password</h3>
-<h3>RecordDetail: @u.Address</h3>  *@

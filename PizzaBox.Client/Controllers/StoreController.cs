@@ -287,5 +287,15 @@ namespace PizzaBox.Client.Controllers
     
       return View("SalesAndRevenue", s);
     }
+
+    [HttpGet]
+    public IActionResult LogoutStore()
+    {
+      var s = new StoreViewModel()
+      {
+        Username = currentStore.Name
+      };
+      return View("LogoutStore", s);
+    }
   }
 }

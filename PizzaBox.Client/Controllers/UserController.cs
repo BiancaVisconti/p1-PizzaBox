@@ -490,6 +490,16 @@ namespace PizzaBox.Client.Controllers
       return View(listOrders);
     }
 
+    [HttpGet]
+    public IActionResult LogoutUser()
+    {
+      var u = new UserViewModel()
+      {
+        Name = currentUser.Name
+      };
+      return View("LogoutUser", u);
+    }
+
 
   }
 }

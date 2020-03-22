@@ -2,13 +2,54 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Welcome to Arlington's Fastest Delivery App</h1>
+<h1 style="text-align:center">Welcome to Arlington's Fastest Delivery App</h1>
 <br>
 <br>
 
-<div>
+<table class="table">
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <h3>
+        <form action="/user/loginuser" method="get">
+          <button type="submit">Login for Clients</button>
+        </form>
+      </h3>
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+      <h3>
+       <form action="/store/loginstore" method="get">
+          <button type="submit">Login for Pizzerias</button>
+        </form> 
+      </h3>
+    </td>
+  </tr>
+</table>
+
+
+<p class="center">
+  <figure>
+    <img class="center" src="https://veryveganrecipes.com/wp-content/uploads/2015/06/supreme-vegan-pizza-daiya-beyond-meat-1024x535.png" alt="delicious vegan pizza">
+  </figure>
+</p>
+
+
+
+@* <figure>
+  <img src="https://veryveganrecipes.com/wp-content/uploads/2015/06/supreme-vegan-pizza-daiya-beyond-meat-1024x535.png" alt="delicious vegan pizza" class="center">
+  <figcaption class="center">Delizious Vegan Pizza</figcaption>
+</figure> *@
+
+
+
+
+@* <div>
   <form action="/user/loginuser" method="get">
-    @* @Html.HiddenFor(u => u.UserId, new { Value = "UserId" }) *@
     <button type="submit">login as client</button>
   </form>
   <br>
@@ -17,12 +58,11 @@
 
 <div>
   <form action="/store/loginstore" method="get">
-    @* @Html.HiddenFor(u => u.UserId, new { Value = "UserId" }) *@
     <button type="submit">login as pizzeria</button>
   </form>
   <br>
   <br>  
-</div>
+</div> *@
 
 
 

@@ -4,40 +4,72 @@
   var s = ViewBag.Message;
 }
 
-<h1>what would you like to do?</h1>
+<h1>What would you like to do?</h1>
 <br>
 <br>
 
-<div>
-  <form action="/store/history" method="get">
-    @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
-    <button type="submit">view order history</button>
-  </form>
-  <br>
-  <br>  
-</div>
+<table>
+  <tr>
+    <td>
+      <form action="/store/history" method="get">
+        @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
+        <h3><input type="submit" value="View my past orders"></h3>
+      </form>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <form action="/store/salesandrevenue" method="get">
+        @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
+        <h3><input type="submit" value="View my sales and revenue"></h3>
+      </form>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <form action="/store/pizzeriainventory" method="get">
+        @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
+        <h3><input type="submit" value="View my inventory"></h3>
+      </form>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <form action="/store/logoutstore" method="get">
+        @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
+        <h3><input type="submit" value="Logout"></h3>
+      </form>
+    </td>
+  </tr>
+</table>
 
-<div>
-  <form action="/store/salesandrevenue" method="get">
-    @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
-    <button type="submit">view sales and revenue</button>
-  </form>
-  <br>
-  <br>  
-</div>
-
-<div>
-  <form action="/store/pizzeriainventory" method="get">
-    @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
-    <button type="submit">view inventory</button>
-  </form>
-  <br>
-  <br>  
-</div>
-
-<div>
-  <form action="/account/logout" method="get">
-    @Html.HiddenFor(s => s.StoreId, new { Value = "StoreId" })
-    <button type="submit">logout</button>
-  </form>
-</div>
