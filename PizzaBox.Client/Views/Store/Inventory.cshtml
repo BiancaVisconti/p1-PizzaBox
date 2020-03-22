@@ -1,7 +1,7 @@
 @model PizzaBox.Client.Models.StoreViewModel
 
 @{
-    ViewData["Title"] = "View History";
+    ViewData["Title"] = "View Inventory";
 }
 
 <h2>inventory</h2>
@@ -22,6 +22,9 @@
       <td>
           <h4>@Html.DisplayFor(modelItem => Model.Inventory[i+1])</h4>
       </td>
+      @* <td>
+          <h4>@Html.DisplayFor(modelItem => Model.Inventory[i+2])</h4>
+      </td> *@
       <td></td>
       <td></td>
       <td></td>
@@ -33,3 +36,18 @@
     </tr>
   }        
 </table>
+
+@* @using (Html.BeginForm("UpdateInventory", "Store", FormMethod.Post))
+{
+  @Html.ValidationMessageFor(m => m.SelectedPizza.PizzaId)
+  <label>enter pizza's number to update inventory</label>
+  <input type="text" id="pizzId" name="pizzaId">
+  @Html.ValidationMessageFor(mo => mo.SelectedPizza.PizzaId, "", new { @class = "text-danger" })
+
+  @Html.ValidationMessageFor(m => m.UpdateInv)
+  <label>how many to add(+) or remove(-)?</label>
+  <input type="text" id="UpdateInv" name="UpdateInv">
+  @Html.ValidationMessageFor(mo => mo.UpdateInv, "", new { @class = "text-danger" })
+  <button type="submit">add or remove</button>
+} *@
+

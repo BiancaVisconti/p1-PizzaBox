@@ -136,7 +136,7 @@ namespace PizzaBox.Storage.Databases
         new StorePizza() { StorePizzaId = 7, StoreId = 1, PizzaId = 7, Inventory = 2},
         new StorePizza() { StorePizzaId = 8, StoreId = 1, PizzaId = 8, Inventory = 2},
         new StorePizza() { StorePizzaId = 9, StoreId = 1, PizzaId = 9, Inventory = 2},
-        new StorePizza() { StorePizzaId = 10, StoreId = 1, PizzaId = 10, Inventory = 2},
+        new StorePizza() { StorePizzaId = 10, StoreId = 1, PizzaId = 10, Inventory = 10},
         new StorePizza() { StorePizzaId = 11, StoreId = 2, PizzaId = 1, Inventory = 2},
         new StorePizza() { StorePizzaId = 12, StoreId = 2, PizzaId = 2, Inventory = 2},
         new StorePizza() { StorePizzaId = 13, StoreId = 2, PizzaId = 3, Inventory = 2},
@@ -146,7 +146,7 @@ namespace PizzaBox.Storage.Databases
         new StorePizza() { StorePizzaId = 17, StoreId = 2, PizzaId = 7, Inventory = 2},
         new StorePizza() { StorePizzaId = 18, StoreId = 2, PizzaId = 8, Inventory = 2},
         new StorePizza() { StorePizzaId = 19, StoreId = 2, PizzaId = 9, Inventory = 2},
-        new StorePizza() { StorePizzaId = 20, StoreId = 2, PizzaId = 10, Inventory = 2},
+        new StorePizza() { StorePizzaId = 20, StoreId = 2, PizzaId = 10, Inventory = 10},
         new StorePizza() { StorePizzaId = 21, StoreId = 3, PizzaId = 1, Inventory = 2},
         new StorePizza() { StorePizzaId = 22, StoreId = 3, PizzaId = 2, Inventory = 2},
         new StorePizza() { StorePizzaId = 23, StoreId = 3, PizzaId = 3, Inventory = 2},
@@ -156,7 +156,7 @@ namespace PizzaBox.Storage.Databases
         new StorePizza() { StorePizzaId = 27, StoreId = 3, PizzaId = 7, Inventory = 2},
         new StorePizza() { StorePizzaId = 28, StoreId = 3, PizzaId = 8, Inventory = 2},
         new StorePizza() { StorePizzaId = 29, StoreId = 3, PizzaId = 9, Inventory = 2},
-        new StorePizza() { StorePizzaId = 30, StoreId = 3, PizzaId = 10, Inventory = 2},
+        new StorePizza() { StorePizzaId = 30, StoreId = 3, PizzaId = 10, Inventory = 10},
         new StorePizza() { StorePizzaId = 31, StoreId = 4, PizzaId = 1, Inventory = 2},
         new StorePizza() { StorePizzaId = 32, StoreId = 4, PizzaId = 2, Inventory = 2},
         new StorePizza() { StorePizzaId = 33, StoreId = 4, PizzaId = 3, Inventory = 2},
@@ -166,7 +166,7 @@ namespace PizzaBox.Storage.Databases
         new StorePizza() { StorePizzaId = 37, StoreId = 4, PizzaId = 7, Inventory = 2},
         new StorePizza() { StorePizzaId = 38, StoreId = 4, PizzaId = 8, Inventory = 2},
         new StorePizza() { StorePizzaId = 39, StoreId = 4, PizzaId = 9, Inventory = 2},
-        new StorePizza() { StorePizzaId = 40, StoreId = 4, PizzaId = 10, Inventory = 2},
+        new StorePizza() { StorePizzaId = 40, StoreId = 4, PizzaId = 10, Inventory = 10},
         new StorePizza() { StorePizzaId = 41, StoreId = 5, PizzaId = 1, Inventory = 2},
         new StorePizza() { StorePizzaId = 42, StoreId = 5, PizzaId = 2, Inventory = 2},
         new StorePizza() { StorePizzaId = 43, StoreId = 5, PizzaId = 3, Inventory = 2},
@@ -176,7 +176,7 @@ namespace PizzaBox.Storage.Databases
         new StorePizza() { StorePizzaId = 47, StoreId = 5, PizzaId = 7, Inventory = 2},
         new StorePizza() { StorePizzaId = 48, StoreId = 5, PizzaId = 8, Inventory = 2},
         new StorePizza() { StorePizzaId = 49, StoreId = 5, PizzaId = 9, Inventory = 2},
-        new StorePizza() { StorePizzaId = 50, StoreId = 5, PizzaId = 10, Inventory = 2},
+        new StorePizza() { StorePizzaId = 50, StoreId = 5, PizzaId = 10, Inventory = 10},
         new StorePizza() { StorePizzaId = 51, StoreId = 6, PizzaId = 1, Inventory = 2},
         new StorePizza() { StorePizzaId = 52, StoreId = 6, PizzaId = 2, Inventory = 2},
         new StorePizza() { StorePizzaId = 53, StoreId = 6, PizzaId = 3, Inventory = 2},
@@ -186,7 +186,7 @@ namespace PizzaBox.Storage.Databases
         new StorePizza() { StorePizzaId = 57, StoreId = 6, PizzaId = 7, Inventory = 2},
         new StorePizza() { StorePizzaId = 58, StoreId = 6, PizzaId = 8, Inventory = 2},
         new StorePizza() { StorePizzaId = 59, StoreId = 6, PizzaId = 9, Inventory = 2},
-        new StorePizza() { StorePizzaId = 60, StoreId = 6, PizzaId = 10, Inventory = 2}
+        new StorePizza() { StorePizzaId = 60, StoreId = 6, PizzaId = 10, Inventory = 10}
       });
     }
   }

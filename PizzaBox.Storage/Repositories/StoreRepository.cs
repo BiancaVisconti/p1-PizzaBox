@@ -128,6 +128,36 @@ namespace PizzaBox.Storing.Repositories
       return pizza;
     }
 
+    public StorePizza GetStorePizza(Store store, Pizza pizza)
+    {
+      StorePizza storePizza = (_db.StorePizza.SingleOrDefault(sp => sp.PizzaId == pizza.PizzaId && sp.StoreId == store.StoreId));
+      
+      return storePizza;
+    }
+
+    public bool UpdateInventory(Store store, Pizza pizza, int new_inventory)
+    {
+      var sp = Get(store, pizza);
+      sp.Inventory = new_inventory;
+      
+      _db.StorePizza.Update(sp);
+      return _db.SaveChanges() == 1;
+    }
+
+    public StorePizza Get(Store store, Pizza pizza)
+    {
+      StorePizza storePizza = (_db.StorePizza.SingleOrDefault(sp => sp.PizzaId == pizza.PizzaId && sp.StoreId == store.StoreId));
+      
+      return storePizza;
+    }
+
+    public Pizza GetPizza(string pizzaName)
+    {
+      Pizza pizza = _db.Pizza.SingleOrDefault(p => p.Name == pizzaName);
+      
+      return pizza;
+    }
+
     public List<StorePizza> GetPerStore(Store store) 
     {
 			return _db.StorePizza.Where(sp => sp.StoreId == store.StoreId).ToList();

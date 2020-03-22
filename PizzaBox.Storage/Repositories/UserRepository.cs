@@ -157,6 +157,13 @@ namespace PizzaBox.Storing.Repositories
       return pizzaPrice;
     }
 
+    public decimal GetPricePizza(string pizzaId)
+    {
+      decimal pizzaPrice = (_db.Pizza.SingleOrDefault(p => p.PizzaId == Int32.Parse(pizzaId)).Price);
+      
+      return pizzaPrice;
+    }
+
     public List<Order> GetPeriodStore(Store store, double days)
     {
       List<Order> list = (_db.Order.Where(o => o.StoreId == store.StoreId && o.Date.AddHours(days*24) >= DateTime.Now).ToList());

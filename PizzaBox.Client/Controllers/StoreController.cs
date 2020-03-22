@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using PizzaBox.Client.Models;
@@ -214,6 +215,7 @@ namespace PizzaBox.Client.Controllers
       foreach (var sp in _sr.GetPerStore(currentStore))
       {
         Pizza pizza = _sr.GetPizza(sp.PizzaId);
+        // listInventory.Add(pizza.PizzaId.ToString());
         listInventory.Add(sp.Inventory.ToString());
         listInventory.Add(pizza.Name);
       }
@@ -221,9 +223,35 @@ namespace PizzaBox.Client.Controllers
       var s = new StoreViewModel()
       {
         Inventory = listInventory,
-        Username = currentStore.Name
+        Username = currentStore.Name,
       };
       
+      
+      return View("Inventory", s);
+    }
+
+    [HttpPost]
+    public IActionResult UpdateInventory(string updateInv, string pizzaId)
+    {
+      Pizza pizza_ = _sr.GetPizza(pizzaId);
+      int new_inventory = _sr.GetStorePizza(currentStore, pizza_).Inventory + Int32.Parse(updateInv);
+      _sr.UpdateInventory(currentStore, pizza_, new_inventory);
+      
+      List<string> listInventory = new List<string>();
+      
+      foreach (var sp in _sr.GetPerStore(currentStore))
+      {
+        Pizza pizza = _sr.GetPizza(sp.PizzaId);
+        // listInventory.Add(pizza.PizzaId.ToString());
+        listInventory.Add(sp.Inventory.ToString());
+        listInventory.Add(pizza.Name);
+      }
+
+      var s = new StoreViewModel()
+      {
+        Inventory = listInventory,
+        Username = currentStore.Name,
+      };
       
       return View("Inventory", s);
     }

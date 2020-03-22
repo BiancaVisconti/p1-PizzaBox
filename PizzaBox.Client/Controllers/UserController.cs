@@ -13,11 +13,17 @@ namespace PizzaBox.Client.Controllers
     private static Store currentStore;
     private static Order currentOrder;
     private static Pizza currentPizza;
+    private static decimal currentTotalPrice;
+    private static decimal currentTotalAmount;
     private static List<Pizza> currentListOfPizzas = new List<Pizza>();
 
     private static Dictionary<long, int> currentPizzaDict = new Dictionary<long, int>();
     
-
+    private static decimal maxTotal = 250M;                 // *** MAXTOTAL = 250
+    private static int maxTotalAmount = 10;                // *** MAXTOTALAMOUNT = 50 
+ 
+    
+    
     private UserRepository _ur;
 
     public UserController(UserRepository repository)
@@ -164,6 +170,8 @@ namespace PizzaBox.Client.Controllers
       if (ModelState.IsValid)
       {
         bool check = _ur.CheckIfNumMenuPizzaIsValid(pizzaId, currentPizzaDict);
+
+        decimal price_ = _ur.GetPricePizza(pizzaId);
         
         //var check = _ur.GetPizza(pizzaId);
 
@@ -183,6 +191,8 @@ namespace PizzaBox.Client.Controllers
             decimal price = _ur.GetPricePizza(p.PizzaId);
             total += price;  
           }
+
+          currentTotalPrice = total;
 
           var o = new OrderViewModel()
           {
@@ -247,40 +257,83 @@ namespace PizzaBox.Client.Controllers
       
       return View("AddPizza", s);
     }
+
+    [HttpGet]
+    public IActionResult RemovePizza()
+    {
+      if (currentListOfPizzas.Count > 0)
+      {
+        Pizza pizza = currentListOfPizzas[currentListOfPizzas.Count - 1];
+        currentPizzaDict[pizza.PizzaId]++;
+        currentListOfPizzas.RemoveAt(currentListOfPizzas.Count -1);
+
+        currentTotalPrice -= pizza.Price;
+        
+        var o = new OrderViewModel()
+        {
+          StoreSelected = currentStore,
+          ListOfPizzas = currentListOfPizzas,
+          Client = currentUser,
+          TotalPrice = currentTotalPrice
+        };
+
+        return View("PreViewOrder", o);
+      }
+      else
+      {
+        var o = new OrderViewModel()
+        {
+          StoreSelected = currentStore,
+          ListOfPizzas = currentListOfPizzas,
+          Client = currentUser,
+          TotalPrice = currentTotalPrice
+        };
+        
+        return View("CantRemovePizza", o);
+      }
+    }
     
     [HttpGet]
     public IActionResult CheckOut()
     {
-      decimal total = 0;
-      foreach (var p in currentListOfPizzas)
+      if (currentListOfPizzas.Count > 0)
       {
-        string namePizza = _ur.GetNamePizza(p.PizzaId);
-        decimal price = _ur.GetPricePizza(p.PizzaId);
-        total += price;  
+        decimal total = 0;
+        foreach (var p in currentListOfPizzas)
+        {
+          string namePizza = _ur.GetNamePizza(p.PizzaId);
+          decimal price = _ur.GetPricePizza(p.PizzaId);
+          total += price;  
+        }
+
+        var o = new OrderViewModel()
+        {
+          StoreSelected = currentStore,
+          ListOfPizzas = currentListOfPizzas,
+          Client = currentUser,
+          TotalPrice = total
+        };
+
+        _ur.PostOrder(currentStore, currentUser);
+
+        var order = _ur.GetOrders();
+        Order ord = order[order.Count-1];
+        var dict = _ur.PizzaAmount(currentListOfPizzas);
+        foreach (var p in dict)
+        {
+          _ur.PostOrderPizza(ord, p.Key, p.Value);
+          int old_inventory = _ur.GetInventory(currentStore, p.Key);
+          int new_inventory = old_inventory - p.Value;
+          _ur.UpdateInventory(currentStore, p.Key, new_inventory); 
+        }
+        
+        return View("CheckOut", o);
       }
-
-      var o = new OrderViewModel()
+      else
       {
-        StoreSelected = currentStore,
-        ListOfPizzas = currentListOfPizzas,
-        Client = currentUser,
-        TotalPrice = total
-      };
-
-      _ur.PostOrder(currentStore, currentUser);
-
-      var order = _ur.GetOrders();
-      Order ord = order[order.Count-1];
-      var dict = _ur.PizzaAmount(currentListOfPizzas);
-      foreach (var p in dict)
-      {
-        _ur.PostOrderPizza(ord, p.Key, p.Value);
-        int old_inventory = _ur.GetInventory(currentStore, p.Key);
-        int new_inventory = old_inventory - p.Value;
-        _ur.UpdateInventory(currentStore, p.Key, new_inventory); 
+        return View("UserOptions");
       }
       
-      return View("CheckOut", o);
     }
     
     [HttpGet]

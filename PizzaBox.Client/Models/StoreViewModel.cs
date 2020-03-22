@@ -48,5 +48,7 @@ namespace PizzaBox.Client.Models
 
     public decimal TotalRevenue { get; set; }
 
+    public int UpdateInv { get; set; }
+
   }
 }

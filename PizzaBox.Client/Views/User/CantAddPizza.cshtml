@@ -1,0 +1,19 @@
+@model PizzaBox.Client.Models.OrderViewModel
+
+@{
+    ViewData["Title"] = "can't remove pizza";
+}
+
+<h1>@Model.Client.Name, you can't add this pizza, the total would go over the maximum amount which is $@Model.MaxPrice</h1>
+
+<br>
+<form action="/user/previeworder" method="post">
+  <button type="submit">back to order</button>
+</form>
+<br>
+
+<br>
+<form action="/user/menuclient" method="post">
+  <button type="submit">back to menu</button>
+</form>
+<br>

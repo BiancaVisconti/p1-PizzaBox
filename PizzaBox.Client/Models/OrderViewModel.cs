@@ -42,6 +42,8 @@ namespace PizzaBox.Client.Models
 
     public List<Order> Orders { get; set; }
 
+    public decimal MaxPrice { get; set; }
+
     
   }
 }
