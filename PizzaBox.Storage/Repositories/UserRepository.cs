@@ -20,11 +20,6 @@ namespace PizzaBox.Storing.Repositories
       _db = dbContext;
     }
 
-    public List<User> Get() 
-    {
-			return _db.User.ToList();
-    }
-
     public bool CheckIfAccountExists(string name, string password)
     {
       if (_db.User.SingleOrDefault(u => u.Name == name && u.Password == password) != null)
@@ -37,40 +32,9 @@ namespace PizzaBox.Storing.Repositories
       }
     }
 
-    public bool CheckIfUsernameExists(string name)
-    {
-      if (_db.User.SingleOrDefault(s => s.Name == name) != null)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
-    }
-
-    public long GetId(string name, string password)
-    {
-      long id = (_db.User.SingleOrDefault(u => u.Name == name && u.Password == password).UserId);
-      
-      return id;
-    }
-
     public User GetUser(string name, string password)
     {
       return _db.User.SingleOrDefault(u => u.Name == name && u.Password == password);
-    }
-
-    public User GetUser(long userId)
-    {
-      return _db.User.SingleOrDefault(u => u.UserId == userId);
-    }
-
-    public string GetName(long userId)
-    {
-      string userName = (_db.User.SingleOrDefault(u => u.UserId == userId).Name);
-      
-      return userName;
     }
 
     public List<Order> GetOrders(long userId)
@@ -105,24 +69,9 @@ namespace PizzaBox.Storing.Repositories
       return _db.Store.ToList(); 
     }
 
-    public Store GetStore(string name, string password)
-    {
-      return _db.Store.SingleOrDefault(u => u.Name == name && u.Password == password);
-    }
-
     public Store GetStoreById(string numStore)
     {
       return _db.Store.SingleOrDefault(s => s.StoreId.ToString() == numStore);
-    }
-
-    public Store GetStore(string name)
-    {
-      return _db.Store.SingleOrDefault(u => u.Name == name);
-    }
-
-    public List<Pizza> GetAllPizzas() 
-    {
-			return _db.Pizza.ToList();
     }
 
     public List<StorePizza> GetPizzasInStore(Store store)
@@ -131,7 +80,6 @@ namespace PizzaBox.Storing.Repositories
       
       return list;
     }
-
 
     public Pizza GetPizza(string pizzaId)
     {
@@ -157,31 +105,11 @@ namespace PizzaBox.Storing.Repositories
       return pizzaPrice;
     }
 
-    public decimal GetPricePizza(string pizzaId)
-    {
-      decimal pizzaPrice = (_db.Pizza.SingleOrDefault(p => p.PizzaId == Int32.Parse(pizzaId)).Price);
-      
-      return pizzaPrice;
-    }
-
-    public List<Order> GetPeriodStore(Store store, double days)
-    {
-      List<Order> list = (_db.Order.Where(o => o.StoreId == store.StoreId && o.Date.AddHours(days*24) >= DateTime.Now).ToList());
-      
-      return list;
-    }
-
-    public List<Order> GetPeriodUser(long userId, double days)
+    public List<Order> GetPeriodUser(long userId, int days)
     {
       List<Order> list = (_db.Order.Where(o => o.UserId == userId && o.Date.AddHours(days*24) >= DateTime.Now).ToList());
 
       return list;
-    }
-
-    public bool Post(User user)
-    {
-      _db.User.Add(user);
-      return _db.SaveChanges() == 1;
     }
 
     public bool PostOrder(Store store, User user)

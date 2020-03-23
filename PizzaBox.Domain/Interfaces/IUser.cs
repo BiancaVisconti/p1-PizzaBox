@@ -7,11 +7,9 @@ namespace PizzaBox.Domain.Interfaces
   {
     bool CheckIfAccountExists(string name, string password);
 
-    long GetId(string name, string password);
 
     User GetUser(string name, string password);
 
-    string GetName(long userId);
  
   }
 }
