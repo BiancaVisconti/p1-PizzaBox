@@ -375,7 +375,7 @@ namespace PizzaBox.Client.Controllers
         });
           
       }
-      return View(listOrders);
+      return View("ClientAllOrders", listOrders);
     }
     
     [HttpPost]
@@ -383,7 +383,7 @@ namespace PizzaBox.Client.Controllers
     {
       ViewBag.Message = "Your Order History";
 
-       ViewBag.Name = currentUser;
+      ViewBag.Name = currentUser;
       
       long tempInt = user.UserId;
       var list = _ur.GetPeriodUser(tempInt, 7);
@@ -422,7 +422,7 @@ namespace PizzaBox.Client.Controllers
         });
       }
       
-      return View(listOrders);
+      return View("Days7Orders", listOrders);
     }
 
     [HttpPost]
@@ -468,7 +468,7 @@ namespace PizzaBox.Client.Controllers
           TotalPrice = total
         });
       } 
-      return View(listOrders);
+      return View("Days30Orders", listOrders);
     }
 
     [HttpGet]

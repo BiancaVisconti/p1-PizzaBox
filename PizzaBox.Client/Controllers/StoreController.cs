@@ -110,13 +110,12 @@ namespace PizzaBox.Client.Controllers
         });
           
       }
-      return View(listOrders);
+      return View("StoreAllOrders", listOrders);
     }
 
     [HttpPost]
     public IActionResult SDays7Orders(StoreViewModel store)
     {
-      
       ViewBag.Message = "Your Order History";
       
       long tempInt = store.StoreId;
@@ -156,7 +155,7 @@ namespace PizzaBox.Client.Controllers
         });
           
       }
-      return View(listOrders);
+      return View("SDays7Orders", listOrders);
     }
 
     [HttpPost]
@@ -201,7 +200,7 @@ namespace PizzaBox.Client.Controllers
         });
           
       }
-      return View(listOrders);
+      return View("SDays30Orders", listOrders);
     }
 
     [HttpGet]
@@ -212,7 +211,6 @@ namespace PizzaBox.Client.Controllers
       foreach (var sp in _sr.GetPerStore(currentStore))
       {
         Pizza pizza = _sr.GetPizza(sp.PizzaId);
-        // listInventory.Add(pizza.PizzaId.ToString());
         listInventory.Add(sp.Inventory.ToString());
         listInventory.Add(pizza.Name);
       }
