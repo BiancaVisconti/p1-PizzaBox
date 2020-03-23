@@ -1,15 +1,47 @@
+<head>
+  <style>
+    img{
+      text-align: center;
+      max-width: 70%;
+      padding-left: 30%;
+    }
+    h1{
+      color: red;
+      text-align: center;
+    }
+    button{
+      color: white;
+      background-color: darkgreen;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      border-color: darkgreen;
+      border-style: solid;
+      border-width: 2px;
+    }
+    table td, table th {
+      font-size: 1em;
+      padding: 5px 7px 5px 7px;
+    }
+  </style>
+</head>
+
 @model PizzaBox.Client.Models.OrderViewModel
 
-<h1 style="text-align:center">@Model.Client.Name, your order is on its way, enjoy! </h1>
+<h1>@Model.Client.Name, your order is on its way, enjoy! </h1>
 <br>
 <br>
-<h4>here is the detail of your order</h4>
+<form action="/user/menuclient" method="post">
+  <button type="submit">Back to menu</button>
+</form>
 <br>
 <br>
-<h3>total: $@Model.TotalPrice</h3>
+
+<h4>Here is the detail of your order</h4>
+<br>
+<br>
+<h3>Total: $@Model.TotalPrice</h3>
 
 <div>
-  <table class="table">
+  <table>
     @foreach (var item in Model.ListOfPizzas)
     {
       <tr>
@@ -19,17 +51,7 @@
         <td>
             <h5>@Html.DisplayFor(modelitem => item.Name)</h5>
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
-      <br>
     }
   </table>
 </div>
-
-
-<form action="/user/menuclient" method="post">
-  <button type="submit">back to menu</button>
-</form>

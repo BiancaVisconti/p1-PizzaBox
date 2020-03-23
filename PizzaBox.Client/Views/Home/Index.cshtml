@@ -1,88 +1,81 @@
-﻿@{
+﻿<head>
+  <style>
+    button{
+      color: white;
+      background-color: darkgreen;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      border-color: darkgreen;
+      border-style: solid;
+      border-width: 2px;
+    }
+    .line{
+      background-color: brown;
+      color: brown;
+    }
+    img{
+      text-align: center;
+      max-width: 65%;
+      padding-left: 30%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .welcome{
+      text-align: center;
+      color: red;
+      height: 60px;
+    }
+    table{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<h1 style="text-align:center">Welcome to Arlington's Fastest Delivery App</h1>
+<h1 class="welcome">Welcome to Arlington's Fastest Delivery App</h1>
 <br>
 <br>
 
-<table class="table">
+<table>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td>
-      <h3>
+      <h4>
         <form action="/user/loginuser" method="get">
-          <button type="submit">Login for Clients</button>
+          <button type="submit">Login as client</button>
         </form>
-      </h3>
+      </h4>
     </td>
     <td></td>
     <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>
-      <h3>
+      <h4>
        <form action="/store/loginstore" method="get">
-          <button type="submit">Login for Pizzerias</button>
+          <button type="submit">Login as pizzeria</button>
         </form> 
-      </h3>
+      </h4>
     </td>
   </tr>
 </table>
 
 
-<p class="center">
-  <figure>
-    <img class="center" src="https://veryveganrecipes.com/wp-content/uploads/2015/06/supreme-vegan-pizza-daiya-beyond-meat-1024x535.png" alt="delicious vegan pizza">
-  </figure>
-</p>
+
+<img src="https://thumbs.dreamstime.com/b/pizza-vegetables-cartoon-28131240.jpg" alt="delicious vegan pizza">
 
 
-
-@* <figure>
-  <img src="https://veryveganrecipes.com/wp-content/uploads/2015/06/supreme-vegan-pizza-daiya-beyond-meat-1024x535.png" alt="delicious vegan pizza" class="center">
-  <figcaption class="center">Delizious Vegan Pizza</figcaption>
-</figure> *@
-
-
-
-
-@* <div>
-  <form action="/user/loginuser" method="get">
-    <button type="submit">login as client</button>
-  </form>
-  <br>
-  <br>  
-</div>
-
-<div>
-  <form action="/store/loginstore" method="get">
-    <button type="submit">login as pizzeria</button>
-  </form>
-  <br>
-  <br>  
-</div> *@
-
-
-
-
-
-@* <div>
-
-<a href="/user/loginuser">login as client</a>
-
-</div>
-
-
-<div>
-
-<a href="/account/login">login</a>
-
-</div> *@
-
-
-@* <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div> *@

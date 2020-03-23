@@ -1,3 +1,28 @@
+<head>
+  <style>
+    img{
+      text-align: center;
+      max-width: 60%;
+      padding-left: 35%;
+    }
+    h1{
+      color: red;
+      text-align: center;
+    }
+    button{
+      color: white;
+      background-color: darkgreen;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      border-color: darkgreen;
+      border-style: solid;
+      border-width: 2px;
+    }
+    table td, table th {
+      font-size: 1em;
+      padding: 5px 7px 5px 7px;
+    }
+  </style>
+</head>
 @model PizzaBox.Client.Models.StoreViewModel
 
 @{
@@ -8,6 +33,8 @@
 
 <br>
 <form action="/user/menuclient" method="post">
-  <button type="submit">back to menu</button>
+  <button type="submit">Back to menu</button>
 </form>
 <br>
+
+<img src="http://clipartmag.com/images/pizza-cartoon-14.jpg" alt="delicious vegan pizza">

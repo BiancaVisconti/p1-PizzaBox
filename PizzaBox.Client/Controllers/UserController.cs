@@ -171,7 +171,7 @@ namespace PizzaBox.Client.Controllers
       {
         bool check = _ur.CheckIfNumMenuPizzaIsValid(pizzaId, currentPizzaDict);
 
-        decimal price_ = _ur.GetPricePizza(pizzaId);
+        //decimal price_ = _ur.GetPricePizza(pizzaId);
         
         //var check = _ur.GetPizza(pizzaId);
 
@@ -205,13 +205,6 @@ namespace PizzaBox.Client.Controllers
           return View("PreViewOrder", o);
         }
       }
-      /*List<StorePizza> listStorePizza = _ur.GetPizzasInStore(currentStore);
-      Dictionary<long, int> dict = new Dictionary<long, int>();
-      foreach (var p in listStorePizza)
-      {
-        dict.Add(p.PizzaId, p.Inventory);
-      }
-      */
       
       List<Pizza> listPizzas = _ur.ShowMenu(currentPizzaDict);
       

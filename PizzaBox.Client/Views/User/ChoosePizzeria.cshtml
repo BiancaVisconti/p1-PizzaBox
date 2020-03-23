@@ -1,3 +1,35 @@
+<head>
+  <style>
+    img{
+      text-align: center;
+      max-width: 70%;
+      padding-left: 30%;
+    }
+    h1{
+      color: red;
+      text-align: center;
+    }
+    h3{
+      color: darkgreen;
+    }
+    button{
+      color: white;
+      background-color: darkgreen;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      border-color: darkgreen;
+      border-style: solid;
+      border-width: 2px;
+    }
+    table td, table th {
+      font-size: 1em;
+      padding: 5px 7px 5px 7px;
+    }
+    table{
+      margin-top:-70px;
+    }
+  </style>
+</head>
+
 @model PizzaBox.Client.Models.StoreViewModel
 
 @{
@@ -8,7 +40,7 @@
 <br>
 
 <form action="/user/menuclient" method="post">
-  <h6><input type="submit" value="Back to menu"></h6>
+  <button type="submit">Back to menu</button>
 </form>
 <br>
 
@@ -19,17 +51,21 @@
     <label>Enter the pizzeria's number</label>
     <input type="text" id="storeId" name="storeId">
     @Html.ValidationMessageFor(mo => mo.SelectedStore.StoreId, "", new { @class = "text-danger" })
-    <button type="submit">select</button>
+    <button type="submit">Select</button>
   
-    <table class="table" style="margin-top:-70px;">
+    <table>
       <th>
         <tr>
           <td>
-            <h3>Number</h3>
+            <h3>N°  </h3>
           </td>
+          <td></td>
+          <td></td>
           <td>
-            <h3>Name</h3>
+            <h3>Pizzeria    </h3>
           </td>
+          <td></td>
+          <td></td>
           <td>
             <h3>Address</h3>
           </td>
@@ -41,9 +77,13 @@
           <td>
               <h5>@Html.DisplayFor(modelitem => item.StoreId))</h5>
           </td>
+          <td></td>
+          <td></td>
           <td>
               <h5>@Html.DisplayFor(modelitem => item.Name)</h5>
           </td>
+          <td></td>
+          <td></td>
           <td>
               <h5>@Html.DisplayFor(modelitem => item.Address)</h5>
           </td>
@@ -51,28 +91,6 @@
         <br>
       }
     </table>
-  
   }
   
 </div>
-
-
-
-
-@* <div class="text-center">
-    <h1 class="display-4">please select a pizzeria</h1>
-</div>
-<div>
-  <h4 class="display-8">1) PizzaEater</h4>
-  <br>
-  <h4 class="display-8">2) DiegoPizza</h4>
-  <br>
-  <h4 class="display-8">3) MiPizza</h4>
-  <br>
-  <h4 class="display-8">4) TuPizza</h4>
-  <br>
-  <h4 class="display-8">5) Mangiata</h4>
-  <br>
-  <h4 class="display-8">6) PizzaLover</h4>
-  <br>
-</div> *@

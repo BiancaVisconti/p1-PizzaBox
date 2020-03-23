@@ -1,10 +1,39 @@
+<head>
+  <style>
+    img{
+      text-align: center;
+      max-width: 70%;
+      padding-left: 30%;
+    }
+    h1{
+      color: red;
+      text-align: center;
+    }
+    h3{
+      color: darkgreen;
+    }
+    input{
+      color: white;
+      background-color: darkgreen;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      border-color: darkgreen;
+      border-style: solid;
+      border-width: 2px;
+    }
+    table td, table th {
+      font-size: 1em;
+      padding: 5px 7px 5px 7px;
+    }
+  </style>
+</head>
+
 @model IEnumerable<PizzaBox.Client.Models.OrderViewModel>
 
 @{
     ViewData["Title"] = "View History";
 }
 
-<h1 style="text-align:center">Here are all your orders from the past 7 days</h1>
+<h1>Here are all your orders from the past 7 days</h1>
 <br>
 <form action="/user/menuclient" method="post">
   <h4><input type="submit" value="Back to menu"></h4>
@@ -13,10 +42,10 @@
 
 @foreach (var item in Model)
 {
-  <table class="table">
+  <table>
     <tr>
       <th>
-        @Html.DisplayFor(modelitem => item.Count)
+        <h3>Order @Html.DisplayFor(modelitem => item.Count)</h3>
       </th>
       <th></th>
     </tr>
@@ -39,19 +68,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.AmountPizzas[i+1])
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>    
     }
     <tr>
         <td>
-            <h4>total: $@Html.DisplayFor(modelItem => item.TotalPrice)</h4>
+            <h4>Total: $@Html.DisplayFor(modelItem => item.TotalPrice)</h4>
         </td>
     </tr>
   </table>

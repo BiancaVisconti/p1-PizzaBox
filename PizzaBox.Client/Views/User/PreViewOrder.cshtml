@@ -1,12 +1,83 @@
+<head>
+  <style>
+    img{
+      text-align: center;
+      max-width: 70%;
+      padding-left: 30%;
+    }
+    h1{
+      color: red;
+      text-align: center;
+    }
+    button{
+      color: white;
+      background-color: darkgreen;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      border-color: darkgreen;
+      border-style: solid;
+      border-width: 2px;
+    }
+    table td, table th {
+      font-size: 1em;
+      padding: 5px 7px 5px 7px;
+    }
+  </style>
+</head>
+
 @model PizzaBox.Client.Models.OrderViewModel
 
-<h1 style="text-align:center">@Model.Client.Name, this is your order so far</h1>
+<h1>@Model.Client.Name, this is your order so far</h1>
 <br>
 <br>
-<h3>total: $@Model.TotalPrice</h3>
 
 <div>
-  <table class="table">
+  <table>
+    <tr>
+      <td>
+        <form action="/user/addpizza" method="get">
+          <button type="submit">Add pizza</button>
+        </form>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <form action="/user/removepizza" method="get">
+          <button type="submit">Remove last pizza added</button>
+        </form>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <form action="/user/checkout" method="get">
+          <button type="submit">My order is ready</button>
+        </form>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <form action="/user/menuclient" method="post">
+          <button type="submit">Back to menu</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br>
+<br>
+<h3>Total: $@Model.TotalPrice</h3>
+
+<div>
+  <table>
     @foreach (var item in Model.ListOfPizzas)
     {
       <tr>
@@ -16,31 +87,11 @@
         <td>
             <h5>@Html.DisplayFor(modelitem => item.Name)</h5>
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
-      <br>
     }
   </table>
 </div>
 
-<form action="/user/addpizza" method="get">
-  <input type="submit" value="add another pizza" class="btn btn-default" />
-</form>
-<br>
 
-<form action="/user/removepizza" method="get">
-  <input type="submit" value="remove last pizza added" class="btn btn-default" />
-</form>
-<br>
 
-<form action="/user/checkout" method="get">
-  <input type="submit" value="done with my order" class="btn btn-default" />
-</form>
-<br>
 
-<form action="/user/menuclient" method="post">
-  <input type="submit" value="back to menu" class="btn btn-default" />
-</form>

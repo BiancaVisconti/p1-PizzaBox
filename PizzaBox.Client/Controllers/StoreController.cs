@@ -64,11 +64,12 @@ namespace PizzaBox.Client.Controllers
     [HttpGet]
     public IActionResult History(StoreViewModel store)
     {
-      var s = _sr.GetStore(store.Username, store.Password);
-
-      //ViewBag.Message = u;
+      var s = new StoreViewModel()
+      {
+        Username = currentStore.Name
+      };
       
-      return View("StorePastOrdersOptions");
+      return View("StorePastOrdersOptions", s);
     }
 
     [HttpPost]

@@ -7,10 +7,10 @@ namespace PizzaBox.Client.Models
 {
   public class StoreViewModel
   {
-    [Display(Name = "enter your pizzeria's username")]
+    [Display(Name = "Username")]
     [Required(ErrorMessage ="please enter your username")]
     public string Username { get; set; }
-    [Display(Name = "enter your password")]
+    [Display(Name = "Password")]
     [Required(ErrorMessage ="please enter a valid password")]
     [DataType(DataType.Password)]
     public string Password { get; set; }
