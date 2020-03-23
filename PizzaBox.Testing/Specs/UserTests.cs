@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using PizzaBox.Domain.Models;
 using PizzaBox.Storing.Repositories;
 using Xunit;
 
@@ -12,13 +14,24 @@ namespace PizzaBox.Testing.Specs
       sut = repository;
     }
 
-    // [Fact]
-    // public void Test_RepositoryGet()
-    // {
-    //   var actual = sut.Get();
+    [Theory]
+    [InlineData("Bianca", "bianca")]
+    public void Test_RepositoryCheckIfAccountExists(string n, string p)
+    {
+      var actual = sut.CheckIfAccountExists(n, p);
 
-    //   Assert.True(actual != null);
-    //   Assert.True(actual.Count >= 0);
-    // }
+      Assert.True(actual);
+    }
+
+    [Theory]
+    [InlineData("Bianca", "bianca")]
+    public void Test_RepositoryGetUser(string n, string p)
+    {
+      var actual = sut.GetUser(n, p);
+
+      Assert.IsType<User>(actual);
+    }
+
+
   }
 }

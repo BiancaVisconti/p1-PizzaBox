@@ -11,16 +11,12 @@ namespace PizzaBox.Client.Controllers
   {
     private static User currentUser;
     private static Store currentStore;
-    private static Order currentOrder;
     private static Pizza currentPizza;
     private static decimal currentTotalPrice;
     private static decimal currentTotalAmount;
     private static List<Pizza> currentListOfPizzas = new List<Pizza>();
 
     private static Dictionary<long, int> currentPizzaDict = new Dictionary<long, int>();
-    
-    private static decimal maxTotal = 250M;                 // *** MAXTOTAL = 250
-    private static int maxTotalAmount = 10;                // *** MAXTOTALAMOUNT = 50 
  
     
     
@@ -226,17 +222,9 @@ namespace PizzaBox.Client.Controllers
     [HttpGet]
     public IActionResult AddPizza()
     {
-      /*List<StorePizza> listStorePizza = _ur.GetPizzasInStore(currentStore);
-      Dictionary<long, int> dict = new Dictionary<long, int>();
-      foreach (var p in listStorePizza)
-      {
-        dict.Add(p.PizzaId, p.Inventory);
-      }
-      */
       
       List<Pizza> listPizzas = _ur.ShowMenu(currentPizzaDict);
       
-      //var listPizzas = _ur.GetAllPizzas();
 
       var s = new StoreViewModel()
       {

@@ -13,7 +13,7 @@ namespace PizzaBox.Domain.Models
 
     public User()
     {
-      //UserId = DateTime.Now.Ticks;
+     
     }
 
     public override string ToString()

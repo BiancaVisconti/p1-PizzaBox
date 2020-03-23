@@ -8,7 +8,7 @@ using PizzaBox.Storage.Databases;
 
 namespace PizzaBox.Storing.Repositories
 {
-  public class OrderRepository : IOrder // ARepository<Order>
+  public class OrderRepository : IOrder
   {
 
     private PizzaBoxDbContext _db;

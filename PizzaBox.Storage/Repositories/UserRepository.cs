@@ -8,10 +8,8 @@ using PizzaBox.Storage.Databases;
 
 namespace PizzaBox.Storing.Repositories
 {
-  public class UserRepository : IUser // ARepository<User>
+  public class UserRepository : IUser
   {
-    //private static readonly UserRepository _ur = new UserRepository();
-    //private static readonly OrderRepository _or = new OrderRepository();
 
     private PizzaBoxDbContext _db;
     

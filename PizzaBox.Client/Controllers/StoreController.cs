@@ -9,11 +9,7 @@ namespace PizzaBox.Client.Controllers
 {
   public class StoreController : Controller
   {
-    
-    private static User currentUser;
     private static Store currentStore;
-    private static Order currentOrder;
-    private static Pizza currentPizza;
     private static List<Pizza> currentListOfPizzas = new List<Pizza>();
     private StoreRepository _sr;
 

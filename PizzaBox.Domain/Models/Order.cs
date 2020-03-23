@@ -11,8 +11,6 @@ namespace PizzaBox.Domain.Models
 
     public DateTime Date { get; set; }
 
-    //public List<Pizza> ListOfPizza { get; }
-
     public long StoreId { get; set; }
 
     public long UserId { get; set; }

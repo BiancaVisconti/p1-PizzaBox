@@ -21,7 +21,7 @@ namespace PizzaBox.Domain.Models
     #endregion
     public Pizza()
     {
-      //PizzaId = DateTime.Now.Ticks;
+      
     }
 
     public override string ToString()

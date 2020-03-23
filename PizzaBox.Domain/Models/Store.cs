@@ -19,7 +19,7 @@ namespace PizzaBox.Domain.Models
 
     public Store()
     {
-      //StoreId = DateTime.Now.Ticks;
+      
     }
 
     public override string ToString()

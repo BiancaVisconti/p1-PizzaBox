@@ -8,10 +8,8 @@ using PizzaBox.Storage.Databases;
 
 namespace PizzaBox.Storing.Repositories
 {
-  public class StoreRepository : IStore // ARepository<Store>
+  public class StoreRepository : IStore
   {
-
-    //private static readonly StoreRepository _sr = new StoreRepository();
 
     private PizzaBoxDbContext _db;
     
@@ -37,32 +35,6 @@ namespace PizzaBox.Storing.Repositories
       }
     }
 
-    public bool CheckIfUsernameExists(string name)
-    {
-      if (_db.Store.SingleOrDefault(s => s.Name == name) != null)
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
-    }
-
-    public long GetId(int numMenu)
-    {
-      long id = (_db.Store.SingleOrDefault(s => s.StoreId == numMenu).StoreId);
-      
-      return id;
-    }
-
-    public long GetId(string name, string password)
-    {
-      long id = (_db.Store.SingleOrDefault(s => s.Name == name && s.Password == password).StoreId);
-      
-      return id;
-    }
-
     public Store GetStore(string name, string password)
     {
       return _db.Store.SingleOrDefault(u => u.Name == name && u.Password == password);
@@ -73,12 +45,6 @@ namespace PizzaBox.Storing.Repositories
       return _db.Store.SingleOrDefault(s => s.StoreId == numMenu);
     }
 
-    public string GetName(long storeId)
-    {
-      string storeName = (_db.Store.SingleOrDefault(s => s.StoreId == storeId).Name);
-      
-      return storeName;
-    }
     public string GetNameClient(long userId)
     {
       string clientName = (_db.User.SingleOrDefault(s => s.UserId == userId).Name);
@@ -100,7 +66,7 @@ namespace PizzaBox.Storing.Repositories
       return list;
     }
 
-    public List<Order> GetPeriodStore(long storeId, double days)
+    public List<Order> GetPeriodStore(long storeId, int days)
     {
       List<Order> list = (_db.Order.Where(o => o.StoreId == storeId && o.Date.AddHours(days*24) >= DateTime.Now).ToList());
       
@@ -169,40 +135,6 @@ namespace PizzaBox.Storing.Repositories
       return list;
     }
 
-    public bool Post(Store store)
-    {
-      _db.Store.Add(store);
-      return _db.SaveChanges() == 1;
-    }
-
-    public bool CheckIfNumLocationIsValid(string nuMenu)
-    {
-      int result;
-      if (int.TryParse(nuMenu, out result))
-      {
-        Store store = GetStore(Int32.Parse(nuMenu)); ///*******CHANGE METHOD
-        if (store == null)
-        {
-          return false;
-        }
-        else
-        {
-          return true;
-        }
-      }
-      else
-      {
-        return false;
-      }
-    }
-
-    public void ShowStores()
-    {
-      foreach (var s in Get())
-      {
-        Console.WriteLine(s);
-      }
-    }
 
     public Dictionary<long, int> CalculateSalesAndRevenue(List<Order> listOrders)
     {

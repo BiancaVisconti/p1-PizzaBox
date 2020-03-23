@@ -18,7 +18,7 @@ namespace PizzaBox.Domain.Models
 
     public StorePizza()
     {
-      //StorePizzaId = DateTime.Now.Ticks;
+      
     }
 
     public override long GetId()

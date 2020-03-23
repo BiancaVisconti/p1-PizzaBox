@@ -9,7 +9,6 @@ namespace PizzaBox.Client.Models
   public class OrderViewModel
   {
     
-
     public long OrderId { get; set; }
 
     public long StoreId { get; set; }
