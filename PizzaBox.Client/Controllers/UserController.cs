@@ -66,6 +66,8 @@ namespace PizzaBox.Client.Controllers
       var u = _ur.GetUser(user.Name, user.Password);
 
       ViewBag.Message = u;
+
+      currentListOfPizzas = new List<Pizza>();
       
       return View("UserOptions");
     }
@@ -307,6 +309,8 @@ namespace PizzaBox.Client.Controllers
           int new_inventory = old_inventory - p.Value;
           _ur.UpdateInventory(currentStore, p.Key, new_inventory); 
         }
+
+        currentListOfPizzas = new List<Pizza>();
         
         return View("CheckOut", o);
       }
